@@ -988,9 +988,9 @@ canvas:not(#ribbon-canvas),
     filter: alpha(opacity=0);
   }
   100% {
-    opacity: 0.6;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-    filter: alpha(opacity=60);
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
   }
 }
 @-webkit-keyframes ribbon_to_show {
@@ -1000,9 +1000,9 @@ canvas:not(#ribbon-canvas),
     filter: alpha(opacity=0);
   }
   100% {
-    opacity: 0.6;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-    filter: alpha(opacity=60);
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
   }
 }
 @-o-keyframes ribbon_to_show {
@@ -1012,9 +1012,9 @@ canvas:not(#ribbon-canvas),
     filter: alpha(opacity=0);
   }
   100% {
-    opacity: 0.6;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-    filter: alpha(opacity=60);
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
   }
 }
 @keyframes ribbon_to_show {
@@ -1024,9 +1024,9 @@ canvas:not(#ribbon-canvas),
     filter: alpha(opacity=0);
   }
   100% {
-    opacity: 0.6;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
-    filter: alpha(opacity=60);
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
   }
 }
 @-moz-keyframes avatar_turn_around {
