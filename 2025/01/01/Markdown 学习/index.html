@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Markdown 学习 | 微光zc的网络小窝</title><meta name="author" content="微光zc"><meta name="copyright" content="微光zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="Markdown 学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown 学习">
+<meta property="og:url" content="https://wzcwzc10.github.io/2025/01/01/Markdown%20%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="微光zc的网络小窝">
+<meta property="og:description" content="Markdown 学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif">
+<meta property="article:published_time" content="2024-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-18T12:50:00.000Z">
+<meta property="article:author" content="微光zc">
+<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Markdown 学习",
+  "url": "https://wzcwzc10.github.io/2025/01/01/Markdown%20%E5%AD%A6%E4%B9%A0/",
+  "image": "https://wzcwzc10.github.io/img/jufufu-ht.gif",
+  "datePublished": "2024-12-31T16:00:00.000Z",
+  "dateModified": "2025-07-18T12:50:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "微光zc",
+      "url": "https://wzcwzc10.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/./img/loading.gif"><link rel="canonical" href="https://wzcwzc10.github.io/2025/01/01/Markdown%20%E5%AD%A6%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Markdown 学习',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/components/bilibili-card/bilibili-card.dark.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/./img/page-bg.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 说说</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/./img/page-ym.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/./img/yx.png" alt="Logo"><span class="site-name">微光zc的网络小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">Markdown 学习</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 说说</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Markdown 学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-31T16:00:00.000Z" title="发表于 2025-01-01 00:00:00">2025-01-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-18T12:50:00.000Z" title="更新于 2025-07-18 20:50:00">2025-07-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">学习总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">871</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Markdown-基础"><a href="#Markdown-基础" class="headerlink" title="Markdown 基础"></a>Markdown 基础</h1><h2 id="Markdown-介绍"><a href="#Markdown-介绍" class="headerlink" title="Markdown 介绍"></a>Markdown 介绍</h2><blockquote>
+<p>引用：<a target="_blank" rel="noopener" href="https://markdown.com.cn/intro.html">https://markdown.com.cn/intro.html</a><br><strong>Markdown</strong>是一种轻量级的「标记语言」<br>可用于在纯文本文档中添加格式化元素（注意扩展名是 .md）</p>
+</blockquote>
+<p><strong>Markdown</strong>在线编辑器：<br><a target="_blank" rel="noopener" href="https://markdown.com.cn/editor">https://markdown.com.cn/editor</a><br><a target="_blank" rel="noopener" href="https://www.jyshare.com/front-end/712">https://www.jyshare.com/front-end/712</a></p>
+<h2 id="Markdown-语法"><a href="#Markdown-语法" class="headerlink" title="Markdown 语法"></a>Markdown 语法</h2><h3 id="标题语法"><a href="#标题语法" class="headerlink" title="标题语法"></a>标题语法</h3><p>&#x3D;&#x3D; 号来标识一级标题， – 号来标识二级标题<br>    # 一级标题<br>    ## 二级标题<br>    ### 三级标题</p>
+<p>标题编号<br><code>### 标题 &#123;#编号&#125;</code></p>
+<h3 id="段落语法"><a href="#段落语法" class="headerlink" title="段落语法"></a>段落语法</h3><p>要创建段落，请使用空白行将一行或多行文本进行分隔<br>在一行的末尾添加两个或多个空格，然后按回车键,即可创建一个换行(<br>)</p>
+<h3 id="强调语法"><a href="#强调语法" class="headerlink" title="强调语法"></a>强调语法</h3><p><em>斜体</em><br>要斜体文本，在文本前后各添加一个星号或下划线</p>
+<p><strong>粗体</strong><br>要加粗文本，在文本前后各添加两个星号或下划线</p>
+<p><em><strong>粗斜体</strong></em><br>要粗斜体文本，在文本前后各添加三个星号或下划线</p>
+<p><del>删除线</del><br>要删除文本，在文本前后各添加两个波浪线</p>
+<h3 id="引用语法"><a href="#引用语法" class="headerlink" title="引用语法"></a>引用语法</h3><blockquote>
+<p>要创建块引用，请在段落前添加一个 &gt; 符号</p>
+<blockquote>
+<p>块引用可以嵌套。在要嵌套的段落前添加一个 &gt;&gt; 符号</p>
+</blockquote>
+</blockquote>
+<h3 id="列表语法"><a href="#列表语法" class="headerlink" title="列表语法"></a>列表语法</h3><p>有序列表<br>1.在每个列表项前添加数字并紧跟一个英文句点</p>
+<p>无序列表<br>-在每个列表项前面添加破折号 (-)、星号 (*) 或加号 (+)<br>    -缩进一个或多个列表项可创建嵌套列表。</p>
+<dl><dt>定义列表<br>第一行键入术语。在下一行，键入一个冒号，后跟一个空格和定义<br><code>问候语</code><br><code>: 你好</code><br>问候语</dt><dd>你好</dd></dl><p>任务列表语法<br><code>- [ ] 任务列表项</code><br><code>- [x] 已完成的任务列表项</code></p>
+<ul>
+<li><input disabled="" type="checkbox"> 任务列表项</li>
+<li><input checked="" disabled="" type="checkbox"> 已完成的任务列表项</li>
+</ul>
+<h3 id="代码语法"><a href="#代码语法" class="headerlink" title="代码语法"></a>代码语法</h3><p><code>要将单词或短语表示为代码，请将其包裹在反引号 (``) 中。</code><br><code>表示为代码的单词或短语中包含一个或多个反引号，则可以通过将单词或短语包裹在双反引号(```)中。</code><br>在代码块之前和之后的行上使用三个反引号（(&#96;&#96;&#96;）或三个波浪号（~~~）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">要创建代码块，</span><br><span class="line">请将代码块的每一行缩进至少四个空格或一个制表符。</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;firstName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;John&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;lastName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Smith&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;age&quot;</span><span class="punctuation">:</span> <span class="number">25</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="分割线语法"><a href="#分割线语法" class="headerlink" title="分割线语法"></a>分割线语法</h3><p>单独一行上使用三个或多个星号 (***)、破折号 (—) 或下划线 (___) 不能包含其他内容</p>
+<hr>
+<h3 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h3><p><code>[链接文字](链接地址 &quot;悬停文本&quot;)</code><br><a href="https://wzcwzc10.github.io/" title="微光zc的网络小窝">我的博客链接</a></p>
+<p>尖括号可以把地址变成可点击链接<br><a href="https://wzcwzc10.github.io/">https://wzcwzc10.github.io/</a></p>
+<p>引用类型链接</p>
+<blockquote>
+<p><code>[文本][1]</code><br><code>[1]: https://wzcwzc10.github.io</code><br>效果如下：<br><a href="https://wzcwzc10.github.io/">文本</a></p>
+</blockquote>
+<p>内部链接<br><code>[链接文字](#标题)</code><br><a href="#markdown-%E4%BB%8B%E7%BB%8D">内部链接</a><br>注意最上方的网址变化</p>
+<h3 id="图片语法"><a href="#图片语法" class="headerlink" title="图片语法"></a>图片语法</h3><p><code>![图片名](图片链接 &quot;图片悬停文本&quot;)</code><br><code>[![图片名](图片链接 &quot;图片悬停文本&quot;)](跳转链接)</code><br><a href="https://wzcwzc10.github.io/"><img src="https://wzcwzc10.github.io/img/ya-mao.avif" alt="图片" title="雅"></a></p>
+<h3 id="表格语法"><a href="#表格语法" class="headerlink" title="表格语法"></a>表格语法</h3><blockquote>
+<p>#| 表格 | 内容  |<br>#| — | —– |<br>#| 头  | 就是头 |<br>#| 尾  | 就是尾 |<br>去掉#号效果如下：</p>
+<table>
+<thead>
+<tr>
+<th>表格</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头</td>
+<td>就是头</td>
+</tr>
+<tr>
+<td>尾</td>
+<td>就是尾</td>
+</tr>
+</tbody></table>
+</blockquote>
+<h3 id="注脚语法"><a href="#注脚语法" class="headerlink" title="注脚语法"></a>注脚语法</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：[<span class="string">文字</span>](<span class="link">链接</span>)</span><br><span class="line">脚注：[<span class="string">文字</span>](<span class="link">脚注解释 &quot;脚注名字&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>引用<a href="%E6%98%AF%E6%8C%87%E9%80%9A%E8%BF%87%E6%B3%A8%E8%84%9A%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%AE%9E%E9%99%85%E8%A1%A8%E7%8E%B0" title="什么是注脚效果">注脚效果</a>如下：<br><code>[^1]: 是指通过注脚方法实现的实际表现</code><br>其实我这个博客不支持</p>
+<h3 id="Emoji-表情"><a href="#Emoji-表情" class="headerlink" title="Emoji 表情"></a>Emoji 表情</h3><p>我这个博客还是不支持，:呜呜呜:<br>:smile:<br>:+1:<br>:heart:<br>:joy:</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io">微光zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io/2025/01/01/Markdown%20%E5%AD%A6%E4%B9%A0/">https://wzcwzc10.github.io/2025/01/01/Markdown%20%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://wzcwzc10.github.io" target="_blank">微光zc的网络小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Markdown/">Markdown</a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></div><div class="post-share"><div class="social-share" data-image="/./img/jufufu-ht.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>来一杯燃油饮</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/04/12/python%20%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AB%E5%A4%A9/" title="python 学习第八天"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">python 学习第八天</div></div><div class="info-2"><div class="info-item-1">python 学习123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129#事件处理#常见事件系列类型#&lt;Control-Shif-Alt-KeyPress-A&gt;  #同时按下Ctrl,Shift,Alt,A#&lt;KeyPress-A&gt;                   #按下A#&lt;Button-1&gt;                     #单击左键#&lt;Double-Button-1&gt;              #双击左键#短格式&lt;...</div></div></div></a><a class="pagination-related" href="/2025/01/01/%E6%96%87%E7%AB%A0%E7%A4%BA%E4%BE%8B/" title="文章示例"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">文章示例</div></div><div class="info-2"><div class="info-item-1">这是一篇文章示例没有实际内容 </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/04/07/python%20%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E5%A4%A9/" title="python 学习第三天"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-07</div><div class="info-item-2">python 学习第三天</div></div><div class="info-2"><div class="info-item-1">python 学习123456789101112131415161718192021222324252627282930313233343536373839#条件if语句year=int(input(&quot;请输入年份:&quot;))day=28if(year%4==0 and year%100!=0)or year%400==0:    day=29print(&quot;&#123;0&#125;年二月有&#123;1&#125;天&quot;.format(year,day))&quot;&quot;&quot;if():    elif&lt;&gt;:    [else:&lt;&gt;]&quot;&quot;&quot;#循环while语句num=0str=&quot;student&quot;while num&lt;len(str):    if str[num]==&#x27;u&#x27;:        break    print(&quot;循环进行中：&quot;+str[num])    num=num+1else:    str=&quot...</div></div></div></a><a class="pagination-related" href="/2023/04/11/python%20%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%83%E5%A4%A9/" title="python 学习第七天"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-11</div><div class="info-item-2">python 学习第七天</div></div><div class="info-2"><div class="info-item-1">python 学习1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798#图形用户界面#关于Tkinter内置库,Python的标准GUI库,支持win,Linux,UNIX,Macintosh#tk接口是Tk图形用户界面工具包标准的Python接口#图像化编程的基本步骤#导入Tkinter模块#创建GUI根窗口#添加人机交互控件并编写相应的函数#在主事件循环中等待用户触发事件响应import tkintermaster=tkinter.Tk()         #创建顶层窗口对象master.title(&quot;这是一个窗口&quot;)master.geometry(&quot;300x120&quot;)master.mainloop()         ...</div></div></div></a><a class="pagination-related" href="/2023/04/05/python%20%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E5%A4%A9/" title="python 学习第一天"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-05</div><div class="info-item-2">python 学习第一天</div></div><div class="info-2"><div class="info-item-1">python 学习123456789101112131415161718192021222324252627282930313233343536373839404142#eval函数用法a=eval(&quot;1.2&quot;)b=eval(&quot;1.2+3.4&quot;)pybook=123c=eval(&quot;pybook&quot;)d=eval(&quot;&#x27;pybook&#x27;&quot;)print(a)print(b)print(c)print(d)print([&quot;a&quot;,&quot;b&quot;,&quot;c&quot;])print(d,d,d)print(d,end=&quot;&quot;)print(&quot;数字&#123;&#125;和数字&#123;&#125;的乘积是&#123;&#125;&quot;.format(a,b,a*b))print(&quot;数字&#123;2&#125;和数字&#123;1&#125;的乘积是&#123;0&#125;&quot;.format(a,b,a*b...</div></div></div></a><a class="pagination-related" href="/2023/04/09/python%20%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%94%E5%A4%A9/" title="python 学习第五天"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-09</div><div class="info-item-2">python 学习第五天</div></div><div class="info-2"><div class="info-item-1">python 学习1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#文件操作和数据格式化  #加b表示二进制  #加+表示读写#r      rb      r+      rb+     #开头写入#w      wb      w+      wb+     #覆盖写入#a      ab      a+      ab+     #结尾写入#语法fileobject=open(file_name[access_mode][buffering])#打开文件fa=open(&quot;D:\\text.txt&quot;,&quot;rb&quot;)print(fa.readline())fa.close()#关闭文件fa=open(&quot;D:\\text.txt&quot;,&quot;wb&quot;)print(&quot;Name of the file:&quot;,fa.name)fa.close()#file.close        ...</div></div></div></a><a class="pagination-related" href="/2023/04/06/python%20%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="python 学习第二天"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-06</div><div class="info-item-2">python 学习第二天</div></div><div class="info-2"><div class="info-item-1">python 学习12345678910111213141516171819202122232425262728293031323334353637383940a=15if(a&gt;10 and a&lt;100)or(a&lt;-10 and a&gt;-100):    print(&quot;BINGO&quot;)s=&quot;青青子衿，悠悠我心。&quot;print(s[5])print(s[2:4])print(s[:4])print(s[5:])print(s[8:4])&quot;&#123;:25&#125;&quot;.format(s)   #左对齐，默认&quot;&#123;:1&#125;&quot;.format(s)    #指定宽度为1，不足变量s的宽度&quot;&#123;:^25&#125;&quot;.format(s)  #居中对齐&quot;&#123;:&gt;25&#125;&quot;.format(s)  #右对齐&quot;&#123;:*^25&#125;&quot;.format(s) #居中对齐且填充*y=0z=...</div></div></div></a><a class="pagination-related" href="/2023/04/12/python%20%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AB%E5%A4%A9/" title="python 学习第八天"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-12</div><div class="info-item-2">python 学习第八天</div></div><div class="info-2"><div class="info-item-1">python 学习123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129#事件处理#常见事件系列类型#&lt;Control-Shif-Alt-KeyPress-A&gt;  #同时按下Ctrl,Shift,Alt,A#&lt;KeyPress-A&gt;                   #按下A#&lt;Button-1&gt;                     #单击左键#&lt;Double-Button-1&gt;              #双击左键#短格式&lt;...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">微光zc</div><div class="author-info-description">一个有想法的极客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/178083315"><i class="fab fa-bilibili"></i><span>关注我！</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">世界全剧终，欢迎来到my blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">Markdown 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">Markdown 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown-%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">Markdown 语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">标题语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E8%90%BD%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">段落语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E8%B0%83%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">强调语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">引用语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.5.</span> <span class="toc-text">列表语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.6.</span> <span class="toc-text">代码语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%89%B2%E7%BA%BF%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.7.</span> <span class="toc-text">分割线语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.8.</span> <span class="toc-text">链接语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.9.</span> <span class="toc-text">图片语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.10.</span> <span class="toc-text">表格语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E8%84%9A%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.11.</span> <span class="toc-text">注脚语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Emoji-%E8%A1%A8%E6%83%85"><span class="toc-number">1.2.12.</span> <span class="toc-text">Emoji 表情</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="第一篇文章">第一篇文章</a><time datetime="2025-07-09T07:47:41.000Z" title="发表于 2025-07-09 15:47:41">2025-07-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/01/Markdown%20%E5%AD%A6%E4%B9%A0/" title="Markdown 学习">Markdown 学习</a><time datetime="2024-12-31T16:00:00.000Z" title="发表于 2025-01-01 00:00:00">2025-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/01/%E6%96%87%E7%AB%A0%E7%A4%BA%E4%BE%8B/" title="文章示例">文章示例</a><time datetime="2024-12-31T16:00:00.000Z" title="发表于 2025-01-01 00:00:00">2025-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/01/%E6%96%87%E7%AB%A0%E7%A4%BA%E4%BE%8B%20copy%202/" title="文章示例">文章示例</a><time datetime="2024-12-31T16:00:00.000Z" title="发表于 2025-01-01 00:00:00">2025-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/12/python%20%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AB%E5%A4%A9/" title="python 学习第八天">python 学习第八天</a><time datetime="2023-04-12T08:53:21.000Z" title="发表于 2023-04-12 16:53:21">2023-04-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/./img/page-ym.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By 微光zc</span></div><div class="footer_custom_text">世界全剧终，欢迎来到my blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"data-lang":"zh-CN","data-reactions-enabled":"1","data-input-position":"top"}
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'wzcwzc10/wzcwzc10.github.io',
+      'data-repo-id': 'R_kgDOPIIccg',
+      'data-category-id': 'DIC_kwDOPIIccs4CtHqc',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="https://cdn.jsdelivr.net/gh/weilain/cdn-photo/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="13985424074" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><script id="canvas_nest" defer="defer" color="255,255,0" opacity="0.6" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="微光zc,欢迎,ヾ(≧▽≦*)o" data-fontsize="30px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html><script type="text/javascript" src="/js/crash_cheat.js"></script>
