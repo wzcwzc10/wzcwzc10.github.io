@@ -1,0 +1,452 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Godot进阶学习 | 微光zc的网络小窝</title><meta name="author" content="微光zc"><meta name="copyright" content="微光zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="Godot进阶学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Godot进阶学习">
+<meta property="og:url" content="https://wzcwzc10.github.io/2025/07/28/Godot%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="微光zc的网络小窝">
+<meta property="og:description" content="Godot进阶学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif">
+<meta property="article:published_time" content="2025-07-28T10:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-28T09:54:53.709Z">
+<meta property="article:author" content="微光zc">
+<meta property="article:tag" content="Godot">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="进阶">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Godot进阶学习",
+  "url": "https://wzcwzc10.github.io/2025/07/28/Godot%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/",
+  "image": "https://wzcwzc10.github.io/img/jufufu-ht.gif",
+  "datePublished": "2025-07-28T10:00:00.000Z",
+  "dateModified": "2025-07-28T09:54:53.709Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "微光zc",
+      "url": "https://wzcwzc10.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/./img/loading.gif"><link rel="canonical" href="https://wzcwzc10.github.io/2025/07/28/Godot%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Godot进阶学习',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/ziti.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/components/bilibili-card/bilibili-card.dark.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/./img/page-bg.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/./img/page-ym.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/./img/yx.png" alt="Logo"><span class="site-name">微光zc的网络小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">Godot进阶学习</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Godot进阶学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-28T10:00:00.000Z" title="发表于 2025-07-28 18:00:00">2025-07-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-28T09:54:53.709Z" title="更新于 2025-07-28 17:54:53">2025-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Godot/">Godot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="项目文件"><a href="#项目文件" class="headerlink" title="项目文件"></a>项目文件</h1><ol>
+<li>project.godot</li>
+</ol>
+<ul>
+<li>项目配置信息文件，class_name 自定义的类也会被写入</li>
+<li>此文件导出后会被放入 pck 文件中</li>
+<li>多人合作时，要小心此文件的覆盖问题</li>
+</ul>
+<ol start="2">
+<li>override.cfg</li>
+</ol>
+<ul>
+<li>存放项目设置信息的文件。</li>
+<li>可覆盖 project.godot 中重复的设置信息。</li>
+<li>但需要手动或使用代码创建。</li>
+</ul>
+<ol start="3">
+<li>ProjectSettings</li>
+</ol>
+<ul>
+<li>与项目设置相关的单例，可以使用代码在这个单例中设置项目设置的信息。</li>
+<li>并保存为 project.godot 或 override.cfg </li>
+<li>使用代码修改的信息，不会对运行中的游戏造成实质性的影响。</li>
+</ul>
+<hr>
+<h1 id="RefCounted"><a href="#RefCounted" class="headerlink" title="RefCounted"></a>RefCounted</h1><p>RefCounted 内置了一个独特的<strong>引用计数器</strong>(可以自动销毁的类)<br>RefCounted 对象的生成<br><code>类名.new()</code> （类名由 class_name 进行自定义）<br><code>load(“路径”).new()</code>（也可以 preload（”路径”）.new())</p>
+<p>RefCounted 的特征</p>
+<ol>
+<li>引用计数器归 0 时，此对象自动被程序删除</li>
+<li>在 GDS 中不包含任何内置属性，仅有四个内置函数，也不必像节点一样要频繁的受场景树的控制，参与服务器的计算工作，相比于节点更加轻量</li>
+<li>作用：比 Node 占用更少的内存节约更多的电脑的算力、还可以进行内存的自动管理。非常适合用于制作游戏中数目庞大的数据对象</li>
+</ol>
+<p>RefCounted 的重要子类：</p>
+<ol>
+<li><p>Resource<br>游戏文件与游戏程序的中转站<br>所有的图片、音频、视频文件都必须先转为 Resource 才可以被节点等对象使用</p>
+</li>
+<li><p>Astar2D&#x2F;Astar3D<br>可以用于构建游戏中的寻路数据</p>
+</li>
+<li><p>Thread&#x2F;Mutex&#x2F;SemaPhore<br>可以用于构建多线程</p>
+</li>
+<li><p>FileAcess&#x2F;DirectoryAcess<br>可用于加载读取计算机内的文件<br>某些子类进行 UDP、TCP 或Websocket 的网络通信</p>
+</li>
+<li><p>StreamPeer<br>可以以字节单位对网络传输中收发的数据进行处理<br>此外，它的子类还涉及了正则、JSON、游戏物理、自定义引擎编辑器等领域</p>
+</li>
+</ol>
+<h2 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h2><h3 id="Resource-的继承关系"><a href="#Resource-的继承关系" class="headerlink" title="Resource 的继承关系"></a>Resource 的继承关系</h3><ul>
+<li>Resource 对象继承自 RefCounted</li>
+<li>Resource 可以进行信号绑定、脚本绑定等一系列 Object 可以进行的操作</li>
+<li>Resource 也有内置引用计数器，计数器归 0 时，资源自动被删除</li>
+</ul>
+<h3 id="需转为-Resource-的常见文件"><a href="#需转为-Resource-的常见文件" class="headerlink" title="需转为 Resource 的常见文件"></a>需转为 Resource 的常见文件</h3><ul>
+<li>图片、3D模型、音频、视频文件 </li>
+<li>场景文件 </li>
+<li>脚本文件</li>
+</ul>
+<h3 id="资源供对象的使用的方式"><a href="#资源供对象的使用的方式" class="headerlink" title="资源供对象的使用的方式"></a>资源供对象的使用的方式</h3><ul>
+<li>多对象使用同一资源本身、适用于图片、3D 模型、音频、视频文件等</li>
+<li>资源经过再处理后，生成新对象，供不同对象使用</li>
+<li>脚本资源再处理生成的对象在 GDS 中不可见，这个新对象被编写在内置代码中， 当使用 set_script 或绑定脚本的对象生成时它也将自动生成</li>
+</ul>
+<h3 id="程序中-Resource-对象的创建"><a href="#程序中-Resource-对象的创建" class="headerlink" title="程序中 Resource 对象的创建"></a>程序中 Resource 对象的创建</h3><ul>
+<li>通过路径加载文件生成资源</li>
+<li>资源随场景启动而自动创建</li>
+<li>将资源文件（可以转化为资源的文件）拖入游戏项目中。</li>
+<li>编辑器对资源文件进行导入，生成特殊文件以及资源文件对应的 import 文件。 import 文件会指向特殊文件。</li>
+<li>游戏启动后借由 import 文件加载特殊文件生成资源对象。 </li>
+<li>加载路径产生资源时，如果原先的资源不消失，则不会产生这个文件的新资源对象， 而只返回引用。在任意一处对此资源的修改，都将影响到所有使用此资源的对象。</li>
+</ul>
+<h3 id="load-与-preload"><a href="#load-与-preload" class="headerlink" title="load 与 preload"></a>load 与 preload</h3><blockquote>
+<p>如果加载的文件已经被转化为资源，且此资源引用计数器不为0，则在此加载此文件不会产生新的资源对象，而是返回一个原先资源对象的引用</p>
+</blockquote>
+<p>▪ load(“文件路径”)或 preload(“文件路径”)<br>创建新对象:<br>由类名 .new（）创建，不会产生相同引用。<br>▪ 内置资源类：某些内置资源类也可以使用 new 以外的函数来创建资源对象。部分内置资源类内部拥有读取与保存文件的函数。<br>▪ 自定义资源类</p>
+<p>load 与 preload 的区别 </p>
+<ul>
+<li>load 的参数可以是字符串变量。preload 则无法使用变量，这是由于二者执行的时机不一样所导致的。<ul>
+<li>load 后可跟随字符串变量，字符串变量的值可以在程序运行时改变，如果改变变量，load 可以加载不同的文件</li>
+<li>preload 后只能跟随固定的字符串，不会在程序运行时改变<br>当脚本文件转化为脚本资源时，转换部分的程序会自动翻找文件中是否出现了 preload 函数，若出现，则在脚本资源生成的同时进行 preload 资源的加载。这时候变量还没有出现，因此只能以文本字符串的形式来告知 preload 加载的内容。</li>
+</ul>
+</li>
+</ul>
+<h3 id="资源保存的格式"><a href="#资源保存的格式" class="headerlink" title="资源保存的格式"></a>资源保存的格式</h3><p>tres ：文本资源格式。具有可读性。<br>res ：二进制资源格式。程序加载速度更快。<br>某些资源会提供特殊格式来保存自己的数据。 </p>
+<hr>
+<h1 id="MainLoop"><a href="#MainLoop" class="headerlink" title="MainLoop"></a>MainLoop</h1><p>程序启动后，程序会创建一个主循环对象，它包含了初始化、空闲帧同步回调、物理帧同步回调等方法<br>这个类中不包含与节点相关的具体操作<br>制作游戏时几乎不会遇到需要自行编写 MainLoop 的情况</p>
+<p>空闲处理与物理处理（Idle Process 与 Physic Process）</p>
+<ul>
+<li>物理处理：Godot 中会内置一个物理服务器，用于处理游戏世界内的各种物理计算。在每一次物理计算之前，这个服务器都会给予主循环一次参与计算的机会， 这就是主循环中的物理处理。默认情况下，物理服务器一秒内会进行 60 次运算，因此主循环中的物理处理也会每秒进行六十次处理。</li>
+<li>空闲处理：在 Godot 相对“空闲”（当某些内置服务器运行结束的时候）的时候执行此处理。引擎会尽可能快的利用空闲时间来绘制新的游戏图像。</li>
+</ul>
+<p>节点中的空闲处理与物理处理</p>
+<ul>
+<li>_process(delta): 空闲帧回调函数 delta 表示距上次空闲帧调用的时间</li>
+<li>_physic_process(delta)：物理帧回调函数 delta 表示距上次物理帧调用的时间</li>
+<li>call(函数名)：立即调用函数</li>
+<li>call_deffer(函数名)：到下个空闲帧调用函数</li>
+</ul>
+<hr>
+<h1 id="Viewport"><a href="#Viewport" class="headerlink" title="Viewport"></a>Viewport</h1><blockquote>
+<p>游戏运行时出现的第一个节点，当第一次加载主场景时， 游戏程序将先创建一个 viewport 节点并且将此节点添加到场景树下，然后再将主场景的根节&gt;点作为 Viewport 的子节点添加过去。场景树下的节点都是第一个 viewport 节点的子节点。 </p>
+</blockquote>
+<p>Viewport 节点的功能<br>这个节点可以在屏幕中创建一个不同的窗口或在另一个窗口中创建子窗口。<br>游戏世界中出现的第一个 Viewport 节点将会创建一个World2D 与一个World3D 对象，分别代表一个独立运行的 2D世界和 3D世界<br>Viewport 节点的子 Node2D 节点与子 Node3D 节点将分别参与两种世界的构成。<br>Viewport 节点的子 Camera2D&#x2F;Camera 节点（2D 摄像机与 3D 摄像机）节点，可以调整游戏显示的区域</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>高阶应用：</p>
+<ul>
+<li>访问 world_2d（world_3d）属性，直接对游戏世界造成影响或查询游戏世界中物 理 &#x2F; 视觉 &#x2F; 声音元素的状态。</li>
+</ul>
+<p>常用应用：</p>
+<ul>
+<li>双人游戏时的分屏效果<br>分屏效果就是用两个 Camera2D（Camera）节点，来显示同一个World2D （World3D）对象内的不同区域内容。而一个 Camera2D 只可以影响到一个 Viewport 节点的显示范围，因此，我们可以创建两个代表相同World2D 对象的 Viewport 节点。<br>补充：默认情况下，当我们手动新建一个 SubViewport 节点时，这个节点将会创建 一个新的World2D 对象，而不会去创建一个新的World3D 对象。这将导致 Viewport 节点拥有一个独立的 2D 世界，而它代表的 3D 世界则是最近的上级 Viewport 节点代表的 World3D 对象。</li>
+<li>输入事件的处理</li>
+</ul>
+<p>其他：</p>
+<ul>
+<li>获取屏幕画面截图 ▪ 设置 &#x2F; 获取鼠标位置 ▪ 等等 ……（详情请查询文档）</li>
+</ul>
+<h2 id="输入事件处理（Viewport-节点最常用的功能）"><a href="#输入事件处理（Viewport-节点最常用的功能）" class="headerlink" title="输入事件处理（Viewport 节点最常用的功能）"></a>输入事件处理（Viewport 节点最常用的功能）</h2><p>节点的_input 与__unhandled_input 函数</p>
+<ul>
+<li>都是输入事件处理函数，当我们点击鼠标、按下键盘和进行其他输入设备的操作时，一个对应的输入事件就会被创建，输入事件会在节点中进行传播<br>此时节点中的_input 函数将根据传播的顺序依次被调用。</li>
+<li>在_input 传播中, 输入事件未被处理掉，则在节点中再进行一次此事件的传播，此时_unhandle_input 自动被调用。unhandle_input 的含义即为未处理输入。</li>
+<li>参数 event 可以代表鼠标点击、键盘按压、屏幕触碰、屏幕拖拽等多种输入事件，不同种类的事件被划分为 InputEvent 的不同子类，它们各自拥有不同的属性，在编写 _input 与_unhandle_input 函数时，要先判断 event 的类型，再进行具体属性的处理。</li>
+</ul>
+<h2 id="Viewport-对-event-的处理"><a href="#Viewport-对-event-的处理" class="headerlink" title="Viewport 对 event 的处理"></a>Viewport 对 event 的处理</h2><ul>
+<li>将事件设为已处理</li>
+<li>创建 input 输入事件</li>
+<li>创建 unhandleinput 事件</li>
+<li>创建文本输入事件</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io">微光zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io/2025/07/28/Godot%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/">https://wzcwzc10.github.io/2025/07/28/Godot%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://wzcwzc10.github.io" target="_blank">微光zc的网络小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Godot/">Godot</a><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><a class="post-meta__tags" href="/tags/%E8%BF%9B%E9%98%B6/">进阶</a></div><div class="post-share"><div class="social-share" data-image="/./img/jufufu-ht.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>来一杯燃油饮</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/07/28/Godot%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="Godot基础学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Godot基础学习</div></div><div class="info-2"><div class="info-item-1">Godot介绍Godot 引擎是一款自由开源、由社区驱动的 2D 和 3D 游戏引擎！Godot官方中文文档  Godot 引擎是一款功能丰富的跨平台游戏引擎，可以通过统一的界面创建 2D 和 3D 游戏。它提供了一套全面的通用工具，因此用户可以专注于制作游戏，而无需重新发明轮子。游戏可以一键导出到多个平台，包括主流的桌面平台（Linux、macOS、Windows）、移动平台（Android、iOS）、基于 Web 的平台以及主机平台。   Godot 在宽松的 MIT 许可证下完全自由且开源。没有附加条件、没有抽成、什么都没有。用户的游戏乃至引擎的每一行代码，都归用户自己所有。Godot 的开发完全独立且由社区驱动，允许用户为满足期望而重塑引擎。它受到非盈利的 Godot 基金会的支持。   基本结构 Godot 开发核心——节点   游戏就是一棵由节点构成的树 大部分节点代表具体的功能 一个节点可有多个子节点   节点的集合——场景   游戏从主场景开始运行，主场景是游戏的根 其他场景就是枝叶，需要与主场景连接   场景间的通信兵——信号   信号机制是 Godot 内一种...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/07/28/Godot%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="Godot基础学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-28</div><div class="info-item-2">Godot基础学习</div></div><div class="info-2"><div class="info-item-1">Godot介绍Godot 引擎是一款自由开源、由社区驱动的 2D 和 3D 游戏引擎！Godot官方中文文档  Godot 引擎是一款功能丰富的跨平台游戏引擎，可以通过统一的界面创建 2D 和 3D 游戏。它提供了一套全面的通用工具，因此用户可以专注于制作游戏，而无需重新发明轮子。游戏可以一键导出到多个平台，包括主流的桌面平台（Linux、macOS、Windows）、移动平台（Android、iOS）、基于 Web 的平台以及主机平台。   Godot 在宽松的 MIT 许可证下完全自由且开源。没有附加条件、没有抽成、什么都没有。用户的游戏乃至引擎的每一行代码，都归用户自己所有。Godot 的开发完全独立且由社区驱动，允许用户为满足期望而重塑引擎。它受到非盈利的 Godot 基金会的支持。   基本结构 Godot 开发核心——节点   游戏就是一棵由节点构成的树 大部分节点代表具体的功能 一个节点可有多个子节点   节点的集合——场景   游戏从主场景开始运行，主场景是游戏的根 其他场景就是枝叶，需要与主场景连接   场景间的通信兵——信号   信号机制是 Godot 内一种...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">微光zc</div><div class="author-info-description">一个有想法的极客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/178083315"><i class="fab fa-bilibili"></i><span>关注我！</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">世界全剧终，欢迎来到my blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">项目文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RefCounted"><span class="toc-number">2.</span> <span class="toc-text">RefCounted</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Resource"><span class="toc-number">2.1.</span> <span class="toc-text">Resource</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource-%E7%9A%84%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.1.</span> <span class="toc-text">Resource 的继承关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E8%BD%AC%E4%B8%BA-Resource-%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.2.</span> <span class="toc-text">需转为 Resource 的常见文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E4%BE%9B%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BD%BF%E7%94%A8%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.3.</span> <span class="toc-text">资源供对象的使用的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD-Resource-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">2.1.4.</span> <span class="toc-text">程序中 Resource 对象的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#load-%E4%B8%8E-preload"><span class="toc-number">2.1.5.</span> <span class="toc-text">load 与 preload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E4%BF%9D%E5%AD%98%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.6.</span> <span class="toc-text">资源保存的格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MainLoop"><span class="toc-number">3.</span> <span class="toc-text">MainLoop</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Viewport"><span class="toc-number">4.</span> <span class="toc-text">Viewport</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%EF%BC%88Viewport-%E8%8A%82%E7%82%B9%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">输入事件处理（Viewport 节点最常用的功能）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Viewport-%E5%AF%B9-event-%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">Viewport 对 event 的处理</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/28/Godot%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/" title="Godot进阶学习">Godot进阶学习</a><time datetime="2025-07-28T10:00:00.000Z" title="发表于 2025-07-28 18:00:00">2025-07-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/28/Godot%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="Godot基础学习">Godot基础学习</a><time datetime="2025-07-28T01:00:00.000Z" title="发表于 2025-07-28 09:00:00">2025-07-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/27/APlayer%20%E6%92%AD%E6%94%BE%E5%99%A8%E7%9A%84%20Hexo%20%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" title="APlayer 播放器的 Hexo 标签插件">APlayer 播放器的 Hexo 标签插件</a><time datetime="2025-07-27T03:30:00.000Z" title="发表于 2025-07-27 11:30:00">2025-07-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/22/hexo+Butterfly%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85sakana%E7%9F%B3%E8%92%9C%E5%B0%8F%E7%BB%84%E4%BB%B6/" title="hexo+Butterfly主题安装sakana石蒜小组件">hexo+Butterfly主题安装sakana石蒜小组件</a><time datetime="2025-07-22T01:15:00.000Z" title="发表于 2025-07-22 09:15:00">2025-07-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/20/BeautifulSoup4%E6%80%BB%E7%BB%93/" title="BeautifulSoup4总结">BeautifulSoup4总结</a><time datetime="2025-07-20T01:00:00.000Z" title="发表于 2025-07-20 09:00:00">2025-07-20</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/./img/page-ym.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By 微光zc</span></div><div class="footer_custom_text">世界全剧终，欢迎来到my blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"data-lang":"zh-CN","data-reactions-enabled":"1","data-input-position":"top"}
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'wzcwzc10/wzcwzc10.github.io',
+      'data-repo-id': 'R_kgDOPIIccg',
+      'data-category-id': 'DIC_kwDOPIIccs4CtHqc',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="https://cdn.jsdelivr.net/gh/weilain/cdn-photo/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="13985424074" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script id="canvas_nest" defer="defer" color="255,255,0" opacity="0.6" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="微光zc,ヾ(≧▽≦*)o,ヾ(^▽^*),ヾ(≧∇≦*)ゝ,ヾ(^_^)o,ヾ(•ω•`)o,ヾ(￣3￣.￣3),ヾ(￣▽￣),ヾ(￣0￣)o" data-fontsize="30px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html><script type="text/javascript" src="/js/crash_cheat.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.css"><div id="sakana-widget" style="position:fixed;bottom:5px;right:80px;"></div><script>function initSakanaWidget() {
+  const jufufuht = SakanaWidget.getCharacter('chisato');
+  jufufuht.image = `../img/jufufu-ht.gif`;
+  jufufuht.initialState = {
+    ...jufufuht.initialState,
+    i: 0.001,
+    d: 1,
+  };
+  SakanaWidget.registerCharacter('jufufuht', jufufuht);
+  new SakanaWidget({ character: 'jufufuht' }).mount('#sakana-widget');
+
+  const jufufu = SakanaWidget.getCharacter('takina');
+  jufufu.image = `../img/jufufu.png`;
+  SakanaWidget.registerCharacter('jufufu', jufufu);
+  new SakanaWidget({ character: 'jufufu' }).mount('#sakana-widget');
+}
+nextCharacter(jufufuht);</script><script async onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.js"></script>
