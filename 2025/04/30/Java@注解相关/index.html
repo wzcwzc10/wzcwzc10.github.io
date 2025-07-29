@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java@注解相关 | 微光zc的网络小窝</title><meta name="author" content="微光zc"><meta name="copyright" content="微光zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="Java@注解相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java@注解相关">
+<meta property="og:url" content="https://wzcwzc10.github.io/2025/04/30/Java@%E6%B3%A8%E8%A7%A3%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="微光zc的网络小窝">
+<meta property="og:description" content="Java@注解相关">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif">
+<meta property="article:published_time" content="2025-04-30T01:00:00.000Z">
+<meta property="article:modified_time" content="2025-07-29T02:27:42.507Z">
+<meta property="article:author" content="微光zc">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="注解">
+<meta property="article:tag" content="后端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Java@注解相关",
+  "url": "https://wzcwzc10.github.io/2025/04/30/Java@%E6%B3%A8%E8%A7%A3%E7%9B%B8%E5%85%B3/",
+  "image": "https://wzcwzc10.github.io/img/jufufu-ht.gif",
+  "datePublished": "2025-04-30T01:00:00.000Z",
+  "dateModified": "2025-07-29T02:27:42.507Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "微光zc",
+      "url": "https://wzcwzc10.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/./img/loading.gif"><link rel="canonical" href="https://wzcwzc10.github.io/2025/04/30/Java@%E6%B3%A8%E8%A7%A3%E7%9B%B8%E5%85%B3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java@注解相关',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/ziti.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/components/bilibili-card/bilibili-card.dark.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/./img/page-bg.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/./img/page-ym.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/./img/yx.png" alt="Logo"><span class="site-name">微光zc的网络小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">Java@注解相关</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Java@注解相关</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-30T01:00:00.000Z" title="发表于 2025-04-30 09:00:00">2025-04-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-29T02:27:42.507Z" title="更新于 2025-07-29 10:27:42">2025-07-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><p>注解（Annotation）,元数据（Meta data）的一种形式，提供了程序本身之外的数据。</p>
+<p>jdk1.5引入的特性，注解与类、接口、枚举在同一个层次，并可以应用于包、类型、构造方法、方法、成员变量、参数、本地变量的声明中。</p>
+<p>注解分为元注解和基本内置注解。</p>
+<h1 id="Java原生"><a href="#Java原生" class="headerlink" title="Java原生"></a>Java原生</h1><p>元注解</p>
+<p><font style="color:#ECAA04;">@Target(ElementType.XXX) </font>&#x2F;&#x2F;目标注解–表示这个注解能放在什么位置上</p>
+<p><font style="color:#ECAA04;">@Retention(RetentionPolicy.XXX)</font> &#x2F;&#x2F;标明注解的生命周期</p>
+<p>&#x2F;&#x2F;        ElementType.PACKAGE：该注解只能声明在一个包名前。<br>&#x2F;&#x2F;        ElementType.ANNOTATION_TYPE：该注解只能声明在一个注解类型前。<br>&#x2F;&#x2F;        ElementType.TYPE：该注解只能声明在一个类前。<br>&#x2F;&#x2F;        ElementType.CONSTRUCTOR：该注解只能声明在一个类的构造方法前。<br>&#x2F;&#x2F;        ElementType.LOCAL_VARIABLE：该注解只能声明在一个局部变量前。<br>&#x2F;&#x2F;        ElementType.METHOD：该注解只能声明在一个类的方法前。<br>&#x2F;&#x2F;        ElementType.PARAMETER：该注解只能声明在一个方法参数前。<br>&#x2F;&#x2F;        ElementType.FIELD：该注解只能声明在一个类的字段前。  </p>
+<p>&#x2F;&#x2F;        RetentionPolicy.SOURCE : 注解只保留在源文件，当Java文件编译成class文件的时候，注解被遗弃；<br>&#x2F;&#x2F;        RetentionPolicy.CLASS : 注解被保留到class文件，但jvm加载class文件时候被遗弃，默认；<br>&#x2F;&#x2F;        RetentionPolicy.RUNTIME : 注解不仅被保存到class文件中，jvm加载class文件之后，仍然存在；<br>&#x2F;&#x2F;        Java源文件(.java文件) —&gt; .class文件 —&gt; 内存中的字节码。</p>
+<p><font style="color:#ECAA04;">@Inherited</font> &#x2F;&#x2F;当一个类继承了拥有此注解的类时，即使当前类没有任何注解。只要父类的注解拥有该注解，则在子类中可以获取到此注解</p>
+<p><font style="color:#ECAA04;">@Documented</font> &#x2F;&#x2F;标记注解，用于描述其他类型的注解应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。</p>
+<p><font style="color:#ECAA04;">@Repeatable</font><font style="color:rgba(0, 0, 0, 0.75);"> </font>&#x2F;&#x2F;(重复注解)被标记的注解可以多次应用于相同的声明或类型使用</p>
+<p><font style="color:#ECAA04;">@Native</font><font style="color:rgba(0, 0, 0, 0.75);"> </font>&#x2F;&#x2F;提示程序可以从本机代码（c\c++）引用java中定义的常量值（JNI）</p>
+<p>基本内置注解</p>
+<p><font style="color:#C99103;">@Deprecated </font>&#x2F;&#x2F;表示此方法或类已经过时，不再建议使用</p>
+<p><font style="color:#C99103;">@Override </font>&#x2F;&#x2F;重写方法声明。</p>
+<p><font style="color:#C99103;">@SuppressWarnings </font>&#x2F;&#x2F;指示应在带注解的元素（以及包含在注解中的所有程序元素）。注意，在给定元素中被抑制的警告集是在所有包含元素中被抑制的警告的超集。还要保证抑制影响的范围最小。</p>
+<p><font style="color:#C99103;">@SafeVarargs</font> &#x2F;&#x2F;用来抑制“堆污染“警告</p>
+<p><font style="color:#C99103;">@FunctionalInterface </font>&#x2F;&#x2F;（函数式接口）主要用于lambda表达式 只能标记在有且仅有一个抽象方法的接口上</p>
+<p>标准</p>
+<p><font style="color:#C99103;">@Resource </font>&#x2F;&#x2F;依赖注入，给对象属性注入数据，可以定义在字段，方法上。一般用在注入dao层数据源，跟<font style="color:#ECAA04;">@Autowired</font>相似，区别就是@Autowired默认是先根据类型，而@Resource默认是先根据名称</p>
+<h1 id="Lombook"><a href="#Lombook" class="headerlink" title="Lombook"></a>Lombook<font style="color:#C99103;"></font></h1><p><font style="color:#ECAA04;">@Data</font> &#x2F;&#x2F; 自动生成getter和setter，toString，equals和hashCode等方法</p>
+<p><font style="color:#ECAA04;">@NoArgsConstructor</font> &#x2F;&#x2F; 生成无参构造函数</p>
+<p><font style="color:#ECAA04;">@AllArgsConstructor </font>&#x2F;&#x2F; 生成全参构造函数</p>
+<p><font style="color:#ECAA04;"></font></p>
+<p><font style="color:#ECAA04;">@Setter</font>和<font style="color:#ECAA04;">@Getter</font> ：对类中的属性生成相应的getter和setter方法。</p>
+<p><font style="color:#ECAA04;">@ToString</font> ：生成toString()方法。该注解有以下属性：</p>
+<p>callSuper：是否输出父类的toString()方法，默认为false。</p>
+<p>includeFieldNames：是否包含字段名称，默认为true。</p>
+<p>exclude：排除生成到toString方法中的字段。</p>
+<p><font style="color:#ECAA04;">@EqualsAndHashCode</font> ：生成equals()方法和hashCode()方法。</p>
+<p><font style="color:#ECAA04;">@NonNull</font>：判断是否为空,如果为空,则抛出java.lang.NullPointerException。</p>
+<p><font style="color:#ECAA04;">@Builder </font>：生成构建器。注意： 会自动生成全参构造方法，可能会导致默认无参构造方法失效。</p>
+<p><font style="color:#ECAA04;">@Slf4j </font>：用于简化日志记录的代码实现。会自动生成一个名为log的SLF4J类型的日志记录器实例。这个实例可以用来记录不同级别的日志信息，如调试信息（debug）、信息（info）、警告（warn）、错误（error）等。</p>
+<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><p><font style="color:#C99103;">@Controller </font>&#x2F;&#x2F;应用在MVC层（控制层）</p>
+<p><font style="color:#C99103;">@Service </font>&#x2F;&#x2F;应用在service层（业务逻辑层）</p>
+<p><font style="color:#C99103;">@Reponsitory </font>&#x2F;&#x2F;应用在dao层（实现类）（数据访问层）</p>
+<p><font style="color:#C99103;">@component </font>&#x2F;&#x2F;表示一个带注释的类是一个“组件”，成为Spring管理的Bean（元注解）</p>
+<p><font style="color:#C99103;">@Autowired </font>&#x2F;&#x2F;依赖注入工具</p>
+<p><font style="color:#C99103;">@Qualifier </font>&#x2F;&#x2F;指定注入对象</p>
+<p><font style="color:#C99103;">@Value  </font>&#x2F;&#x2F;指定注入值</p>
+<p>WEB</p>
+<p><font style="color:#ECAA04;">@RequestMapping</font> &#x2F;&#x2F;用来映射web请求（访问路径和参数），处理类和方法的。可以注解在类和方法上，注解在方法上的路径会继承注解在类上的路径。同时支持Serlvet的request和response作为参数，也支持对request和response的媒体类型进行配置。其中有value(路径)，produces(定义返回的媒体类型和字符集)，method(指定请求方式)等属性。</p>
+<p><font style="color:#C99103;">@GetMapping</font>和<font style="color:#C99103;">@PostMapping</font>是<font style="color:#C99103;">@RequestMapping</font>的两种特例，一个是get方式请求，一个是post方式</p>
+<p><font style="color:#ECAA04;">@RequestParam(value&#x3D;”参数名”,required&#x3D;”true&#x2F;false”,defaultValue&#x3D;””)(“参数名”)</font> &#x2F;&#x2F;将请求参数绑定到你控制器的方法参数上（是springmvc中接收普通参数的注解）</p>
+<p><font style="color:#ECAA04;">@PathVariable(value&#x3D;”username”)</font> &#x2F;&#x2F;放置在参数前，用来接受路径参数。</p>
+<p><font style="color:#ECAA04;">@ResponseBody</font> &#x2F;&#x2F;将返回值放在response体内。返回的是数据而不是页面。异步请求返回json数据使用。</p>
+<p><font style="color:#ECAA04;">@RequestBody</font> &#x2F;&#x2F;允许request的参数在request体中，而不是在直接链接在地址的后面。放置在参数前。</p>
+<p><font style="color:#ECAA04;">@RestController</font> &#x2F;&#x2F;组合注解<font style="color:#ECAA04;">@Controller</font>和<font style="color:#ECAA04;">@ResponseBody</font>，当我们只开发一个和页面交互数据的控制层时可以使用此注解。</p>
+<p><font style="color:#ECAA04;">@ControllerAdvice</font> &#x2F;&#x2F;用在类上，声明一个控制器建言，它也组合了@Component注解，会自动注册为Spring的Bean。</p>
+<p><font style="color:#ECAA04;">@ExceptionHandler(value&#x3D;Exception.class)</font>用在方法上定义全局处理，通过他的value属性可以过滤拦截的条件：表示拦截所有的Exception。</p>
+<p><font style="color:#ECAA04;">@SpringBootApplication</font>：启动</p>
+<p><font style="color:#ECAA04;">@EnableAutoConfiguration</font>:自动配置</p>
+<p><font style="color:#ECAA04;">@Configuration</font>：配置文件</p>
+<p><font style="color:#ECAA04;">@ComponentScan</font>：自动扫描</p>
+<p>AOP</p>
+<p><font style="color:#C99103;">@Aspect </font> &#x2F;&#x2F; 使用@Aspect注解声明一个切面</p>
+<p><font style="color:#ECAA04;">@After</font> &#x2F;&#x2F;后置建言</p>
+<p><font style="color:#ECAA04;">@Before</font> &#x2F;&#x2F;前置建言</p>
+<p><font style="color:#ECAA04;">@Around</font> &#x2F;&#x2F;环绕</p>
+<p><font style="color:#ECAA04;">@PointCut</font> &#x2F;&#x2F;切点</p>
+<p><font style="color:#ECAA04;">@annotation </font>&#x2F;&#x2F;修饰在某一个方法上，那么就会命中，执行定义的类增强逻辑</p>
+<p>测试</p>
+<p><font style="color:#ECAA04;">@SpringBootTest</font></p>
+<p><font style="color:#ECAA04;">@Test</font></p>
+<p><font style="color:#ECAA04;">@RunWith(SpringJUnit4ClassRunner.class)</font></p>
+<p><font style="color:#ECAA04;">@Ignore :</font> 被忽略的测试方法</p>
+<p><font style="color:#ECAA04;">@Before: </font>每一个测试方法之前运行</p>
+<p><font style="color:#ECAA04;">@After : </font>每一个测试方法之后运行</p>
+<p><font style="color:#ECAA04;">@BeforeClass: </font>所有测试开始之前运行</p>
+<p><font style="color:#ECAA04;">@AfterClass: </font>所有测试结束之后运行</p>
+<p>其他</p>
+<p><font style="color:#ECAA04;">@Transactional</font>：事务声明（一般默认配置即可满足要求，当然也可以自定义）</p>
+<p><font style="color:#ECAA04;">@Cacheable</font> &#x2F;&#x2F;声明数据缓存</p>
+<p><font style="color:#ECAA04;">@PropertySource</font>：文件引入</p>
+<p>指定文件地址。提供了一种方便的、声明性的机制，用于向Spring的环境添加PropertySource。与@configuration类一起使用。</p>
+<p><font style="color:#ECAA04;">@Async</font> &#x2F;&#x2F;多线程异步方法</p>
+<p><font style="color:#ECAA04;">@EnableAsync</font> &#x2F;&#x2F;多线程，开启异步任务支持。注解在配置类上。</p>
+<p><font style="color:#ECAA04;">@EnableScheduling</font> &#x2F;&#x2F;注解在配置类上，开启对计划任务的支持。</p>
+<p><font style="color:#ECAA04;">@Scheduled(fixedRate &#x3D; 60 * 1000) </font>&#x2F;&#x2F;每分钟执行一次。支持多种类型的计划任务：cron,fixDelay,fixRate。</p>
+<p><font style="color:#ECAA04;">@profile()</font>&#x2F;&#x2F;指定类或方法在特定的 Profile 环境生效，任何@Component或@Configuration注解的类都可以使用@Profile注解。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io">微光zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io/2025/04/30/Java@%E6%B3%A8%E8%A7%A3%E7%9B%B8%E5%85%B3/">https://wzcwzc10.github.io/2025/04/30/Java@%E6%B3%A8%E8%A7%A3%E7%9B%B8%E5%85%B3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://wzcwzc10.github.io" target="_blank">微光zc的网络小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/%E6%B3%A8%E8%A7%A3/">注解</a><a class="post-meta__tags" href="/tags/%E5%90%8E%E7%AB%AF/">后端</a></div><div class="post-share"><div class="social-share" data-image="/./img/jufufu-ht.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>来一杯燃油饮</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/25/IP%20%E5%9C%B0%E5%9D%80%E6%9F%A5%E8%AF%A2%E8%B0%83%E7%94%A8%E7%BD%91%E7%AB%99/" title="IP 地址查询调用网站"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">IP 地址查询调用网站</div></div><div class="info-2"><div class="info-item-1">IP 地址查询调用网站 ipinfo.io  ipinfo.io 提供 IP 地址信息查询服务,包括地理位置、ISP、ASN 等信息，提供了 API 接口,支持多种编程语言,方便开发者集成使用。需要注册  ifconfig.me  以其简洁和实用性著称，支持IPv4和IPv6地址查询，界面简洁明了，快速显示公网IP地址。  whatismyip.com  whatismyip.com 不仅提供 IP 地址查询服务,同时还提供了其他网络工具和信息,比如 DNS 查询、端口扫描等。在该网站上,你可以一站式获取网络相关的多方面数据。需美金  ip-api.com  ip-api.com 提供 IP 地址查询服务,包括地理位置、ASN、ISP 等信息。与 ipinfo.io 类似,它也提供了 API 接口,支持多种编程语言,方便开发者集成使用。无需注册  myip.com  myip.com 提供简单的 IP 地址查询服务,打开网站即可看到当前设备的公共 IP 地址。只需要快速查看自己的公网 IP时用。需梯子  inip.in  提高API，免费，无须梯子。推荐 </div></div></div></a><a class="pagination-related" href="/2025/06/01/%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%A7%81%E8%A7%A3/" title="关于正则表达式的见解"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">关于正则表达式的见解</div></div><div class="info-2"><div class="info-item-1">正则表达式是什么？个人感觉正则表达式是一种用于搜索文本各元素的符号组合。 正则表达式的用途 查找 替换 验证 提取  正则表达式语法基本法则&#x2F;正则表达式&#x2F;   / 用来表示正则表达式的开始和结束或运算符 |转义字符 \  后缀搜索符号+ 代表前面的字符必须至少出现一次* 代表前面的字符可以不出现，也可以出现一次或者多次? 代表前面的字符最多只可以出现一次 普通字符   元字符 描述    . 匹配除换行符外的任意单个字符   [] 可理解为一个字符集合，匹配方括号内的任意字符   [^ ] 否定的字符种类，匹配除了方括号里的任意字符   {} 通常作为量词使用，常用于限定一个或一组字符可以重复出现的次数   (xyz) 字符集，匹配与括号内相等的字符串   ^ 从开始行开始匹配   $ 从末端开始匹配   简写字符   简写 描述    \w 匹配所有字母和数字，相当于[a-zA-Z0-9_]   \W 匹配所有非字母数字，相当于[^\w]   \d 匹配数字，相当于[0-9]   \D 匹配非数字，相当于[^\d]   \s 匹配空格字符   \S 匹配非空...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/01/19/Java%E4%B8%ADIO%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AE%89%E8%A3%85/" title="Java中IO框架的安装"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-19</div><div class="info-item-2">Java中IO框架的安装</div></div><div class="info-2"><div class="info-item-1">安装方法：Maven依赖： 12345&lt;dependency&gt;    &lt;groupId&gt;commons-io&lt;/groupId&gt;    &lt;artifactId&gt;commons-io&lt;/artifactId&gt;    &lt;version&gt;2.11.0&lt;/version&gt;&lt;/dependency&gt; Gradle依赖：implementation ‘commons-io:commons-io:2.11.0’ 创建一个lib文件夹，将下载好的包放入 右键选择下载好的包，选择添加为库 </div></div></div></a><a class="pagination-related" href="/2025/01/23/Java%E8%BF%9B%E9%98%B6five%20%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="Java进阶five 网络编程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-23</div><div class="info-item-2">Java进阶five 网络编程</div></div><div class="info-2"><div class="info-item-1">前言 Java进阶课程的第五篇，网络编程相关内容。  学习完基础之后就是进阶的内容了。    包含的知识 网络编程基础   InetAddress类：用于获取主机的IP地址信息。 getLocalHost()：返回本地主机的InetAddress对象。 getByName(String host)：通过域名获取远程主机的InetAddress对象。 isReachable(int timeout)：尝试确定是否可以通过网络到达该地址。   UDP通信   DatagramSocket类：代表一个UDP套接字，允许发送和接收数据报文。 DatagramPacket类：封装了UDP数据报，包含要发送的数据和目的地或接收到的数据及来源。 构造函数用于创建数据包，指定数据、长度、目标地址和端口（对于发送）；或者仅指定缓冲区大小（对于接收）。 send(DatagramPacket p)：从DatagramSocket发送数据报。 receive(DatagramPacket p)：在DatagramSocket上接收数据报。   TCP通信   Socket类：表示TCP连接的一个端点，...</div></div></div></a><a class="pagination-related" href="/2025/01/21/Java%E8%BF%9B%E9%98%B6four%20%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" title="Java进阶four 线程基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-21</div><div class="info-item-2">Java进阶four 线程基础</div></div><div class="info-2"><div class="info-item-1">前言 Java进阶课程的第四篇，线程相关内容。  学习完基础之后就是进阶的内容了。    包含的知识 多线程的创建：   继承Thread类：通过创建一个继承自Thread类的子类，并重写run()方法来定义线程任务。 实现Runnable接口：通过实现Runnable接口并实现run()方法来定义线程任务，然后将这个对象传递给Thread构造函数。 匿名内部类：在需要的地方直接创建Runnable接口的匿名内部类实例。 Lambda表达式：使用lambda表达式简化Runnable接口的实现。 实现Callable接口：与Runnable类似，但Callable可以返回结果，并可能抛出异常。   FutureTask：   包装Callable对象以便它们可以在Thread中执行，并且能够获取执行的结果。   线程控制方法：   start()：启动线程，调用线程的run()方法。 join()：当前线程等待另一个线程完成。 sleep(long millis)：暂停当前正在执行的线程一段时间。   线程安全：   演示了如何使用同步方法或同步代码块来确保线程安全，避免多个线程...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">微光zc</div><div class="author-info-description">一个有想法的极客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/178083315"><i class="fab fa-bilibili"></i><span>关注我！</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">世界全剧终，欢迎来到my blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">注解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E5%8E%9F%E7%94%9F"><span class="toc-number">2.</span> <span class="toc-text">Java原生</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lombook"><span class="toc-number">3.</span> <span class="toc-text">Lombook</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot"><span class="toc-number">4.</span> <span class="toc-text">SpringBoot</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/28/Godot%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/" title="Godot进阶学习">Godot进阶学习</a><time datetime="2025-07-28T10:00:00.000Z" title="发表于 2025-07-28 18:00:00">2025-07-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/28/Godot%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="Godot基础学习">Godot基础学习</a><time datetime="2025-07-28T01:00:00.000Z" title="发表于 2025-07-28 09:00:00">2025-07-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/27/APlayer%20%E6%92%AD%E6%94%BE%E5%99%A8%E7%9A%84%20Hexo%20%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/" title="APlayer 播放器的 Hexo 标签插件">APlayer 播放器的 Hexo 标签插件</a><time datetime="2025-07-27T03:30:00.000Z" title="发表于 2025-07-27 11:30:00">2025-07-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/22/hexo+Butterfly%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85sakana%E7%9F%B3%E8%92%9C%E5%B0%8F%E7%BB%84%E4%BB%B6/" title="hexo+Butterfly主题安装sakana石蒜小组件">hexo+Butterfly主题安装sakana石蒜小组件</a><time datetime="2025-07-22T01:15:00.000Z" title="发表于 2025-07-22 09:15:00">2025-07-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/20/BeautifulSoup4%E6%80%BB%E7%BB%93/" title="BeautifulSoup4总结">BeautifulSoup4总结</a><time datetime="2025-07-20T01:00:00.000Z" title="发表于 2025-07-20 09:00:00">2025-07-20</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/./img/page-ym.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By 微光zc</span></div><div class="footer_custom_text">世界全剧终，欢迎来到my blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"data-lang":"zh-CN","data-reactions-enabled":"1","data-input-position":"top"}
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'wzcwzc10/wzcwzc10.github.io',
+      'data-repo-id': 'R_kgDOPIIccg',
+      'data-category-id': 'DIC_kwDOPIIccs4CtHqc',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="https://cdn.jsdelivr.net/gh/weilain/cdn-photo/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="13985424074" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script id="canvas_nest" defer="defer" color="255,255,0" opacity="0.6" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="微光zc,ヾ(≧▽≦*)o,ヾ(^▽^*),ヾ(≧∇≦*)ゝ,ヾ(^_^)o,ヾ(•ω•`)o,ヾ(￣3￣.￣3),ヾ(￣▽￣),ヾ(￣0￣)o" data-fontsize="30px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html><script type="text/javascript" src="/js/crash_cheat.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.css"><div id="sakana-widget" style="position:fixed;bottom:5px;right:80px;"></div><script>function initSakanaWidget() {
+  const jufufuht = SakanaWidget.getCharacter('chisato');
+  jufufuht.image = `../img/jufufu-ht.gif`;
+  jufufuht.initialState = {
+    ...jufufuht.initialState,
+    i: 0.001,
+    d: 1,
+  };
+  SakanaWidget.registerCharacter('jufufuht', jufufuht);
+  new SakanaWidget({ character: 'jufufuht' }).mount('#sakana-widget');
+
+  const jufufu = SakanaWidget.getCharacter('takina');
+  jufufu.image = `../img/jufufu.png`;
+  SakanaWidget.registerCharacter('jufufu', jufufu);
+  new SakanaWidget({ character: 'jufufu' }).mount('#sakana-widget');
+}
+nextCharacter(jufufuht);</script><script async onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.js"></script>
