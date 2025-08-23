@@ -1,0 +1,474 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>读Godot4.4文档手册 | 微光zc的网络小窝</title><meta name="author" content="微光zc"><meta name="copyright" content="微光zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="读Godot4.4文档手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读Godot4.4文档手册">
+<meta property="og:url" content="https://wzcwzc10.github.io/2025/08/19/%E8%AF%BBGodot4.4%E6%96%87%E6%A1%A3%E6%89%8B%E5%86%8C/index.html">
+<meta property="og:site_name" content="微光zc的网络小窝">
+<meta property="og:description" content="读Godot4.4文档手册">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif">
+<meta property="article:published_time" content="2025-08-19T11:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-23T04:11:34.227Z">
+<meta property="article:author" content="微光zc">
+<meta property="article:tag" content="Godot">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="文档">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "读Godot4.4文档手册",
+  "url": "https://wzcwzc10.github.io/2025/08/19/%E8%AF%BBGodot4.4%E6%96%87%E6%A1%A3%E6%89%8B%E5%86%8C/",
+  "image": "https://wzcwzc10.github.io/img/jufufu-ht.gif",
+  "datePublished": "2025-08-19T11:00:00.000Z",
+  "dateModified": "2025-08-23T04:11:34.227Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "微光zc",
+      "url": "https://wzcwzc10.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/./img/loading.gif"><link rel="canonical" href="https://wzcwzc10.github.io/2025/08/19/%E8%AF%BBGodot4.4%E6%96%87%E6%A1%A3%E6%89%8B%E5%86%8C/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '读Godot4.4文档手册',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/ziti.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/components/bilibili-card/bilibili-card.dark.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/./img/page-bg.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/./img/page-ym.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/./img/yx.png" alt="Logo"><span class="site-name">微光zc的网络小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">读Godot4.4文档手册</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">读Godot4.4文档手册</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-19T11:00:00.000Z" title="发表于 2025-08-19 19:00:00">2025-08-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-23T04:11:34.227Z" title="更新于 2025-08-23 12:11:34">2025-08-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Godot/">Godot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">6.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>本文参考<a target="_blank" rel="noopener" href="https://docs.godotengine.org/zh-cn/4.x/index.html">Godot4.4中文文档</a>中<br>手册的内容进行了总结改进，去除了个人感觉无用的部分</p>
+<h1 id="手册"><a href="#手册" class="headerlink" title="手册"></a>手册</h1><h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="在-Godot-中应用面向对象原则"><a href="#在-Godot-中应用面向对象原则" class="headerlink" title="在 Godot 中应用面向对象原则"></a>在 Godot 中应用面向对象原则</h3><p>Godot 引擎主要提供了两种创建可复用对象的方式：脚本和场景。<br>虽没有真正在底层定义类但面向对象的编程原则任可应用到脚本和场景中。</p>
+<ol>
+<li>脚本：<br>引擎提供了内置的类，如 Node 。你可以使用脚本扩展这些类来创建派生类型。<br>这些脚本严格来说并不是类，而是一种资源，用来告知引擎在某一内置类的基础上执行一系列初始化。</li>
+</ol>
+<p>Godot 的内部类可以将一个类的数据注册进一个名为<strong>ClassDB</strong>的数据库可以在运行时访问类的信息。<br>ClassDB 包含类的信息，例：属性 方法 常量 信号</p>
+<p>当对象在执行访问属性或调用方法等操作时，它就会检查 ClassDB 中对象和对象基类的记录，以确定对象是否支持该操作。<br>将 Script 附加到你的对象上，可以扩展 ClassDB 中该对象的方法、属性和信号。</p>
+<p>脚本即使没有使用 extends 关键字，也会隐式地继承引擎的基础 RefCounted 类。<br>因此，你可以从代码中实例化不使用 extends 关键字的脚本。<br>不过由于扩展的是 RefCounted，无法把它们附加到 Node 上。</p>
+<ol start="2">
+<li>场景：<br>场景是可复用、可实例化、可继承的节点组。<br>创建场景就类似于，有一个脚本去创建一些节点，并使用 add_child() 将它们添加为子节点。</li>
+</ol>
+<p>我们经常为场景搭配一个带有脚本的根节点，并在脚本中使用这个场景下的节点。脚本是通过使用命令式代码为场景添加行为来扩展场景的。</p>
+<p>场景的内容有助于定义：<br>脚本可使用哪些节点。<br>如何组织，初始化。<br>彼此之间有什么信号连接。</p>
+<p>为什么这些对组织场景很重要？<br>因为场景的实例都是对象。<br>因此，许多适用于书面代码的面向对象原则也适用于场景：单一职责、封装等。</p>
+<p>场景就是对附着在根节点上的脚本的扩展，所以你可以将其解释为类的一部分。<br>此系列最佳实践中所解释的大部分技术都建立在这一点上。</p>
+<h3 id="场景组织"><a href="#场景组织" class="headerlink" title="场景组织"></a>场景组织</h3><p>如何有效地建立关系？</p>
+<ul>
+<li>应尽可能设计没有依赖的场景。（创建的场景应该将其所需的一切保留在其内部）</li>
+<li>如果场景必须与外部环境交互，建议使用依赖注入。</li>
+<li>依赖注入涉及使高级 API 提供低级 API 的依赖关系。</li>
+<li>为什么？依赖于其外部环境的类可能会无意中触发 Bug 和意外行为。</li>
+</ul>
+<p>✅ 核心目标：松耦合 + 高内聚<br>“一个类不应依赖外部环境来完成其核心功能。”<br>                        —— 这是良好设计的核心原则之一。</p>
+<p>要做到这一点，就必须暴露数据，然后依靠父级上下文对其进行初始化<br>下面是五种方法：</p>
+<ol>
+<li>连接信号。<br>这样做极其安全，但只能用于“响应”行为，而不是启动行为。<br>按惯例，信号名称通常是过去式动词，如“entered”“skill_activated”“item_collected”（已进入、已激活技能、已收集道具）。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Parent</span><br><span class="line">$Child.signal_name.connect(method_on_the_object)</span><br><span class="line"></span><br><span class="line"># Child 子 → 父（通知）</span><br><span class="line">signal_name.emit() # 触发父级定义的行为</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>调用方法。<br>用于启动行为。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Parent</span><br><span class="line">$Child.method_name = &quot;do&quot;</span><br><span class="line"></span><br><span class="line"># Child 父 → 子（指令）</span><br><span class="line">call(method_name) # Call parent-defined method (which child must own).</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>初始化 Callable 属性。<br>比调用方法更安全，因为不需要拥有这个方法的所有权。用于启动行为。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Parent</span><br><span class="line">$Child.func_property = object_with_method.method_on_the_object</span><br><span class="line"></span><br><span class="line"># Child 父 → 子（注入行为）</span><br><span class="line">func_property.call() # Call parent-defined method (can come from anywhere).</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>初始化 Node 或其他 Object 的引用。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Parent</span><br><span class="line">$Child.target = self</span><br><span class="line"></span><br><span class="line"># Child 父 → 子（提供数据源）</span><br><span class="line">print(target) # Use parent-defined node.</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>初始化 NodePath。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Parent</span><br><span class="line">$Child.target_path = &quot;..&quot;</span><br><span class="line"></span><br><span class="line"># Child 子 → 外部（通过路径查找）</span><br><span class="line">get_node(target_path) # Use parent-defined NodePath.</span><br></pre></td></tr></table></figure>
+<p>这些选项隐藏了子节点的访问点。这反过来又使子节点与环境保持<strong>松耦合</strong> （loosely coupled）。<br>人们可以在另外一个上下文中重新使用它，而不需要对API做任何额外的改变。</p>
+<mark class="hl-label red">警告</mark>
+<p>你应该倾向于将数据保存在场景内部，尽管它对外部内容有一个依赖关系，甚至是一个松散耦合的依赖，仍然意味着节点将期望其环境中的某些内容为真。项目的设计理念应避免这种情况的发生。如果不这样做，代码的继承关系将迫使开发人员使用文档, 以在微观尺度上跟踪对象关系；这就是所谓的开发地狱。通常情况下，编写依赖于外部文档才能安全使用的代码，是很容易出错的。<br>为了避免创建和维护此类文档，可以将依赖节点（上面的子级）转换为工具脚本，该脚本实现 _get_configuration_warnings()。从中返回的一个非空字符串紧缩数组（PackedStringArray）将使场景停靠面板生成警告图标，其中包含上述字符串作为节点的工具提示。这个警告图标和没有定义 CollisionShape2D 子节点时 Area2D 节点旁出现的图标是一样的。这样，编辑器通过脚本代码自记录（self-document）场景，也就不需要在文档里记录一些与之重复的内容了。<br>这样的GUI可以更好地通知项目用户有关节点的关键信息. 它具有外部依赖性吗？这些依赖性是否得到满足？其他程序员, 尤其是设计师和作家, 将需要消息中的明确指示, 告诉他们如何进行配置.<br>选择节点树结构<br>构造节点树的方法有无数种。但对于没把握的人而言，这份有用的指南可以给他们一个不错的结构样本作为开始。<br>main.gd 脚本将作为你的游戏的主要控制器。<br>另外，你的游戏需要一个主要GUI，来管理项目所需的各种菜单和部件。<br>当变更关卡时，可以稍后换出“World”节点的子级。手动更换场景让用户完全控制他们的游戏世界如何过渡。<br>下一步是考虑项目需要什么样的游戏系统。如果有这么一个系统……<br>跟踪所有的内部数据<br>应该是全局可访问的<br>应该是独立存在的<br>…接下来他该创建一个自动加载“单例”节点了。</p>
+<h3 id="何时使用场景与脚本"><a href="#何时使用场景与脚本" class="headerlink" title="何时使用场景与脚本"></a>何时使用场景与脚本</h3><h3 id="自动加载与常规节点"><a href="#自动加载与常规节点" class="headerlink" title="自动加载与常规节点"></a>自动加载与常规节点</h3><h3 id="何时以及如何避免为任何事情使用节点"><a href="#何时以及如何避免为任何事情使用节点" class="headerlink" title="何时以及如何避免为任何事情使用节点"></a>何时以及如何避免为任何事情使用节点</h3><h3 id="Godot-接口"><a href="#Godot-接口" class="headerlink" title="Godot 接口"></a>Godot 接口</h3><h3 id="Godot-通知"><a href="#Godot-通知" class="headerlink" title="Godot 通知"></a>Godot 通知</h3><h3 id="数据偏好"><a href="#数据偏好" class="headerlink" title="数据偏好"></a>数据偏好</h3><h3 id="逻辑偏好"><a href="#逻辑偏好" class="headerlink" title="逻辑偏好"></a>逻辑偏好</h3><h3 id="项目组织"><a href="#项目组织" class="headerlink" title="项目组织"></a>项目组织</h3><h3 id="版本控制系统"><a href="#版本控制系统" class="headerlink" title="版本控制系统"></a>版本控制系统</h3><h2 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h2><ol>
+<li>编辑器运行缓慢，占用所有的 CPU 和 GPU 资源<br>尤其是在 macOS 上，因为大多数 Mac 都有 Retina 显示屏。<br>由于 Retina 显示器的像素密度更高，因此所有内容都必须以更高的分辨率渲染。会增加 GPU 上的负载并降低感知性能。</li>
+</ol>
+<p>有几种衡量性能和电池续航的方法：</p>
+<ul>
+<li>在 3D 模式下，单击左上角的透视按钮并启用半分辨率。现在 3D 视口就会以半分辨率渲染，速度最多可以提高到原来的 4 倍。</li>
+<li>打开编辑器设置并将低处理器模式睡眠（微秒）的值增加到 33000（30 FPS）。该值决定了渲染每帧画面之间所间隔的时间（微秒单位）。 较高的值将会使编辑器操作起来没有那么跟手，但可显著降低 CPU 和 GPU 使用率。</li>
+<li>如果有某个节点导致编辑器连续重新绘制（例如粒子），请将其隐藏并在脚本中使用 _ready() 方法显示它。这样，它将隐藏在编辑器中，但仍在正在运行的项目中可见。</li>
+</ul>
+<ol start="2">
+<li>编辑器在我的可变刷新率显示器（G-Sync&#x2F;FreeSync）上出现卡顿和闪烁的情<br>可变刷新率显示器需要不断调整其伽玛曲线，以便随着时间的推移发出一致的光量。<br>当刷新率变化很大时，这可能会导致图像的黑暗区域出现闪烁，这是因为 Godot 编辑器仅在必要时重绘。</li>
+</ol>
+<p>这有几种解决办法：</p>
+<ul>
+<li>在编辑器设置中启用界面 &gt; 编辑器 &gt; 持续更新。即使画面没有变化，编辑器也将不断渲染。请注意，这会增加功耗、加大热量和噪音排放。<br>为了缓解这种情况，你可以在编辑器设置中将低处理器模式睡眠（微秒）增加到 33000（30 FPS）。<br>该值决定了渲染每帧画面之间所间隔的时间（微秒单位）。<br>较高的值将会使编辑器操作起来没有那么跟手，但可显著降低 CPU 和 GPU 使用率。</li>
+<li>在显示器或图形驱动程序中禁用可变刷新率。</li>
+<li>VRR 闪烁这个问题在某些显示器上，可以通过你的显示器的 OSD 中的 VRR 控制或微调暗区选项来减少。这些选项可能会增加输入延迟或导致黑色失真。</li>
+<li>如果使用 OLED 显示器，可以在编辑器设置中使用 Black (OLED) 编辑器主题预设。因为 OLED 显示器的出色的黑阶表现，这可以隐藏 VRR 闪烁。</li>
+</ul>
+<ol start="3">
+<li>编辑器或项目花了很长时间才启动<br>使用基于 Vulkan 的渲染器（Forward+ 或 Mobile）时，首次启动将会花费较长的时间。<br>这是因为着色器需要先编译才能进行缓存。更新 Godot、更新显卡驱动或切换显卡后，着色器也需要重新缓存。</li>
+</ol>
+<p>如果这个问题在首次启动后依然存在，那么这是 Windows 上的一个已知错误，当你连接了特定的 USB 外设时就会出现 。特别是，海盗船的 iCUE 软件似乎引起了该错误。尝试将 USB 外设的驱动程序更新为最新版本。如果错误仍然存在，则需要在打开编辑器之前断开故障外围设备的连接。然后，你可以再次连接外围设备。</p>
+<p>Portmaster 等防火墙软件可能会屏蔽调试端口，导致项目启动时间变长，并且无法在编辑器中使用调试功能（例如查看 print() 的输出）。变通方法是在“编辑器设置”中修改项目所使用的调试端口（网络 &gt; 调试 &gt; 远程端口）。默认值是 6007；可以尝试设成大于 1024 的值，比如 7007。</p>
+<p>在 Windows 上，当首次加载项目时，如果电脑刚开机，Windows Defender 会导致项目启动时文件系统缓存验证耗时显著增加。对于文件较多的项目尤为明显。考虑通过以下步骤将项目文件夹添加到排除列表中：病毒与威胁防护 &gt; 病毒与威胁防护设置 &gt; 添加或删除排除项。</p>
+<ol start="4">
+<li>点击系统控制台后 Godot 编辑器没有响应<br>在启用了系统控制台的 Windows 上运行 Godot 时，你可以通过在命令窗口中单击来意外启用选择模式。Windows 的这种特定行为会暂停应用程序，以便你在系统控制台内选择文本。Godot 无法覆盖此系统特定的行为。</li>
+</ol>
+<p>要解决此问题，请选择系统控制台窗口，然后按 Enter 退出选择模式。</p>
+<ol start="5">
+<li>手动移动 Godot 编辑器的 macOS Dock 图标之后出现多余的编辑器图标<br>如果你打开 Godot 编辑器并手动改变 dock 图标的位置，然后重启编辑器，你会在 dock 的最右边看到一个重复的 dock 图标。</li>
+</ol>
+<p>这是由于 macOS dock 的设计限制造成的。解决这个问题的唯一已知方法是将项目管理器和编辑器合并为一个进程，这意味着项目管理器在启动编辑器时不再产生一个单独的进程。虽然使用单一进程实例会带来一些好处，但由于任务的复杂性，完成这个功能没有列入我们近期的工作计划。</p>
+<p>为了避免这个问题，保持 Godot 编辑器的 dock 图标在 macOS 创建的默认位置。</p>
+<ol start="6">
+<li>在项目管理器和编辑器窗口的左上角出现“NO DC”之类的文本<br>这是由于 NVIDIA 显卡驱动程序注入了覆盖显示信息造成的。</li>
+</ol>
+<p>要在 Windows 上禁用此覆盖，请在 NVIDIA 控制面板中将图形驱动程序设置恢复为默认值。</p>
+<p>要在 Linux 上禁用此覆盖，请打开 nvidia-settings，转到 X Screen 0 &gt; OpenGL Settings，然后取消选中 Enable Graphics API Visual Indicator。</p>
+<ol start="7">
+<li>在项目管理器和编辑器窗口右下角出现一个麦克风或刷新的图标<br>这是由于 NVIDIA 图形驱动程序注入覆盖以显示 ShadowPlay 录制的即时重播信息造成的。此覆盖只能在 Windows 上看到，因为 Linux 不支持 ShadowPlay。</li>
+</ol>
+<p>要禁用此覆盖，请按 Alt + Z（NVIDIA 覆盖的默认快捷方式）并在 NVIDIA 覆盖中禁用设置 &gt; HUD 布局 &gt; 状态指示器。</p>
+<p>你也可以选择安装取代 GeForce Experience 的新的 NVIDIA 程序 <a target="_blank" rel="noopener" href="https://www.nvidia.com/en-us/software/nvidia-app/">https://www.nvidia.com/en-us/software/nvidia-app/</a>，这样就不会遇到这个问题。与 GeForce Experience 不同的是，NVIDIA 程序会在屏幕的角落而不是每个窗口的角落绘制回放指示器。</p>
+<ol start="8">
+<li>编辑器或项目显示得过于锐利或模糊<br>可能是由于你的图形驱动程序强制对所有 Vulkan 或 OpenGL 应用程序进行图像锐化。</li>
+</ol>
+<p>你可以在图形驱动程序的控制面板中禁用此行为：<br>NVIDIA（Windows）：打开开始菜单，选择 NVIDIA 控制面板。打开左侧的管理 3D 设置选项卡。在中间的列表中，滚动到图像锐化，并将其设置为关闭锐化。<br>AMD（Windows）：打开开始菜单，选择 AMD 软件。点击右上角的设置 “齿轮 “图标。转到图形选项卡，然后禁用 Radeon 图像锐化。<br>如果编辑器或者项目看起来过于模糊，这可能是由于 FXAA 被你的显卡驱动强制应用到所有的 Vulkan 或者 OpenGL 应用程序上。<br>NVIDIA（Windows）：打开开始菜单并选择 NVIDIA 控制面板。打开左侧的管理 3D 设置选项卡。在中间的列表中， 滚动到平滑设置 - FXAA 并将其设置为应用程序控制的。<br>NVIDIA（Linux）：打开应用程序菜单，选择 NVIDIA X 服务器设置。在左侧选择 Antialiasing Settings，取消对 Enable FXAA 的勾选。<br>AMD（Windows）：打开开始菜单并选择 AMD Software。点击设置右上角的“齿轮”图标。转到图形选项卡， 滚动到底部并点击高级以展开其设置。禁用形态抗锯齿。</p>
+<p>像是 vkBasalt 这种第三方开发的供应的工具可能会强迫所有的 Vulkan 应用程序开启锐化或者 FXAA。你可能也需要检查他们的设置。</p>
+<p>当你变更过了显卡驱动和第三方工具中的设置后，重启 Godot 去应用这些设置。<br>如果你仍然希望在其他应用程序上强制锐化或 FXAA，建议你使用显卡驱动控制面板提供的应用程序配置系统，针对每个应用程序的进行设置。</p>
+<ol start="9">
+<li>此编辑器或项目看起来颜色很淡<br>在 Windows 上，这通常是由不正确的操作系统或显示器设置引起的，因为 Godot 目前不支持 HDR 输出（即使它可能在内部以 HDR 渲染）。</li>
+</ol>
+<p>由于<code>大多数显示器并非被设计为在 HDR 模式下显示 SDR 内容 &lt;https://tftcentral.co.uk/articles/heres-why-you-should-only-enable-hdr-mode-on-your-pc-when-you-are-viewing-hdr-content&gt;</code>__，建议在未运行使用 HDR 输出的应用程序时在 Windows 设置中禁用 HDR。在 Windows 11 上，可以通过按 Windows + Alt + B 来完成该操作（该快捷方式是 Xbox Game Bar 应用程序的一部分）。要根据当前正在运行的应用程序自动切换 HDR，你可以使用 AutoActions。</p>
+<p>如果你坚持启用 HDR，可以通过确保显示器配置为使用 HGIG 色调映射（而不是 DTM），然后<code>使用 Windows HDR 校准应用程序 &lt;https://support.microsoft.com/en-us/windows/calibrate-your-hdr-display-using-the-windows-hdr-calibration-app-f30f4809-3369-43e4-9b02-9eabebd23f19&gt;</code>__ 来稍微改善结果。强烈建议在使用 HDR 时使用 Windows 11 而不是 Windows 10。不过，最终结果可能仍不如在显示器上禁用 HDR。</p>
+<p>计划在未来版本中支持 HDR 导出。</p>
+<ol start="10">
+<li>从挂起状态恢复 PC 后，编辑器&#x2F;项目冻结或显示出现故障<br>当在 Linux 上使用 NVIDIA 的专用图形驱动程序时便会出现这个已知的问题。<br>目前还没有明确的解决方案，因为当涉及 OpenGL 或 Vulkan 时，Linux + NVIDIA 上的挂起通常会出现问题。<br>与 Forward+ 和 Mobile 渲染方法（使用 Vulkan ）相比，兼容性渲染方法（采用 OpenGL ）通常不太容易出现挂起相关问题。</li>
+</ol>
+<p>NVIDIA驱动程序提供了一个实验性选项可在挂起后保护视频内存用以解决这个问题。<br>据报道，该选项与较新的 NVIDIA 驱动程序版本配合使用效果更好。</p>
+<p>为了避免丢失工作内容，请在使电脑进入睡眠状态之前将场景保存在编辑器中。</p>
+<ol start="11">
+<li>项目在编辑器中正常运行，但在导出后无法加载部分文件<br>这通常是由于忘记在导出对话框中指定非资源文件过滤器而导致的。<br>默认情况下，Godot 只会将实际的资源包含到 PCK 文件中。一些常用的文件，例如 JSON 文件，不会被视为资源。<br>例如，如果你在导出的项目中加载 test.json，则需要在非资源导出过滤器中指定 *.json。有关更多信息，请参阅 资源选项。</li>
+</ol>
+<p>另外，请注意，导出的项目永远不会包含名字以点开头的文件和文件夹。这是为了防止将 .git 等版本控制文件夹包含在导出的 PCK 文件中。</p>
+<p>在 Windows 上，也可能是大小写敏感性的问题。如果你在脚本里引用资源时所使用的大小写与文件系统中的不符，在导出项目后就会载入失败。这是因为虚拟 PCK 文件系统是大小写敏感的，而 Windows 的文件系统是大小写不敏感的。</p>
+<ol start="12">
+<li>项目在从项目管理器打开后频繁崩溃或立即崩溃<br>这可能是由多个因素引起的，比如编辑器插件、GDExtension 插件或其他原因。<br>建议以恢复模式打开项目，并尝试找到并修复导致崩溃的原因。<br>有关更多信息，请参见 Project Manager page。</li>
+</ol>
+<h2 id="编辑器简介"><a href="#编辑器简介" class="headerlink" title="编辑器简介"></a>编辑器简介</h2><h3 id="编辑器的界面"><a href="#编辑器的界面" class="headerlink" title="编辑器的界面"></a>编辑器的界面</h3><p>使用项目管理器不需要什么教程，自己实际体验就可以更好掌握</p>
+<ul>
+<li>项目的使用</li>
+<li>下载演示和模板</li>
+<li>用标签管理项目</li>
+<li>恢复模式</li>
+</ul>
+<p>Inspector Dock<br>检查器扩展坞<br>如果不可见，可以通过导航到 编辑器 &gt; 编辑器设置 &gt; 编辑器停靠 &gt; 检查器</p>
+<p>在内部，Godot 将项目的设置存储在一个 project.godot 文件中，这是一个 INI 格式的纯文本文件。<br>虽然这种格式易于阅读且对版本控制友好，但直接编辑并不太方便。<br>可以通过 项目设置 窗口来编辑这些设置。要打开项目设置，请从主菜单中选择 项目 &gt; 项目设置。</p>
+<h3 id="XR-编辑器"><a href="#XR-编辑器" class="headerlink" title="XR 编辑器"></a>XR 编辑器</h3><h3 id="Android-编辑器"><a href="#Android-编辑器" class="headerlink" title="Android 编辑器"></a>Android 编辑器</h3><h3 id="Web-编辑器"><a href="#Web-编辑器" class="headerlink" title="Web 编辑器"></a>Web 编辑器</h3><h3 id="高级功能"><a href="#高级功能" class="headerlink" title="高级功能"></a>高级功能</h3><h3 id="管理编辑器功能"><a href="#管理编辑器功能" class="headerlink" title="管理编辑器功能"></a>管理编辑器功能</h3><h2 id="2D"><a href="#2D" class="headerlink" title="2D"></a>2D</h2><h2 id="3D"><a href="#3D" class="headerlink" title="3D"></a>3D</h2><h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><h2 id="资产管线"><a href="#资产管线" class="headerlink" title="资产管线"></a>资产管线</h2><h2 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h2><h3 id="音频总线"><a href="#音频总线" class="headerlink" title="音频总线"></a>音频总线</h3><p>Godot的音频引擎允许创建任意数量的音频总线, 并且可以向每个总线添加任意数量的效果处理器.<br>运行游戏的设备的硬件会限制总线的数量, 以及在性能开始下降之前可以使用的效果.</p>
+<p>分贝标度<br>分贝(dB)标度是一个相对标度. 它等于声功率比的常用对数的20倍(20 × log10(P&#x2F;P&#x2F;0)).<br>每增&#x2F;减6分贝, 声幅就会加倍&#x2F;减半.12dB代表系数4,18dB代表系数8,20dB代表系数10,40dB代表系数100, 以此类推.<br>由于比例是对数的, 因此无法表示真零(无音频).<br>0 dB 是数字音频系统中可能的最大振幅. 这个限制不是人为的限制, 而是声音硬件的限制. 因振幅太高而无法完全反映在0dB以下的音频, 会产生一种被称为 削波 的失真.<br>为了避免削波，你应该调整混音，使master 总线（后面会有更多的介绍）永远不超过 0 dB。<br>低于0dB限制的每6dB, 声能就会 减半 . 这意味着-6dB的音量是0dB的一半. -12dB是-6dB的一半, 依此类推.<br>使用分贝时, -60dB和-80dB范围内的声音被认为是听不见的. 也就是说你的工作范围一般在-60dB和0dB之间.</p>
+<p>音频总线(audio bus)音频通道 (audio channel)<br>音频总线可以在Godot 编辑器的底部面板中找到:<br>音频从扬声器播放出来之前通过的地方.<br>它可以 修改 和 重路由 音频数据.<br>音频总线有一个 VU表(播放声音时亮起的条形), 表示通过的信号的幅度.</p>
+<p>最左边的总线是 主总线 .<br>此总线将混音输出到你的扬声器, 因此, 正如之前 分贝标度 部分所述, 请确保主总线中的混音水平永远低于 0 dB.<br>其余的音频总线可以灵活地进行路由.<br>在修改声音后, 它们会将其发送到左边的另一条总线上. 非主总线的目标总线可以被单独设置.<br>而右侧总线的音频会被路由至左侧总线, 这避免了无限循环.</p>
+<h3 id="音频特效"><a href="#音频特效" class="headerlink" title="音频特效"></a>音频特效</h3><h3 id="音频流"><a href="#音频流" class="headerlink" title="音频流"></a>音频流</h3><h3 id="将游戏玩法与音频和音乐同步"><a href="#将游戏玩法与音频和音乐同步" class="headerlink" title="将游戏玩法与音频和音乐同步"></a>将游戏玩法与音频和音乐同步</h3><h3 id="使用麦克风录音"><a href="#使用麦克风录音" class="headerlink" title="使用麦克风录音"></a>使用麦克风录音</h3><h3 id="文本转语音"><a href="#文本转语音" class="headerlink" title="文本转语音"></a>文本转语音</h3><h2 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h2><h2 id="文件与数据-I-O"><a href="#文件与数据-I-O" class="headerlink" title="文件与数据 I&#x2F;O"></a>文件与数据 I&#x2F;O</h2><h2 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h2><h2 id="输入处理"><a href="#输入处理" class="headerlink" title="输入处理"></a>输入处理</h2><h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="高级多人游戏"><a href="#高级多人游戏" class="headerlink" title="高级多人游戏"></a>高级多人游戏</h3><ol>
+<li><p>高层API vs 底层 API<br>Godot 始终支持通过 UDP、 TCP 和一些更高级别的协议（如 SSL 和 HTTP ）进行标准的低级网络连接。<br>使用 Godot 的高级网络 API，牺牲了对低级网络的一些细度控制，有更强的易用性。</p>
+</li>
+<li><p>中层抽象<br>Godot 使用了一个中间层级的 MultiplayerPeer 对象。不应直接创建这种对象，它被设计为由多个 C++ 实现所提供。</p>
+</li>
+</ol>
+<p>这个对象扩展自 PacketPeer 类，继承了所有用于序列化、发送和接收数据的方法。<br>此外，该对象还添加了设置对等体、传输模式等方法。它还包括让你知道对等体何时连接或断开的信号。</p>
+<p>这个类接口可以抽象出大多数类型的网络层、拓扑结构和库。<br>默认情况下，Godot 会提供一个基于 ENet 的实现（ENetMultiplayerPeer）、一个基于 WebRTC 的实现（WebRTCMultiplayerPeer）以及一个基于WebSocket的实现（WebSocketPeer），而该类接口可以用来实现移动 API（用于特设的 WiFi、蓝牙等）或自定义设备&#x2F;控制台中特定的网络 API。</p>
+<p>但大多数常见情况下，不鼓励直接使用这个对象，因为 Godot 提供了更高级别的网络使用方法。<br>只有当游戏对较低级别的API有特殊需求的情况下，才使用该对象。</p>
+<ol start="3">
+<li>服务器托管的注意事项<br>托管服务器时，LAN 上的客户端可以使用内网 IP 地址进行连接，该地址的格式通常是 192.168.<em>.</em>。 非 LAN&#x2F;Internet 客户端无法访问此内部 IP 地址。</li>
+</ol>
+<p>在 Windows 中， 你可以在命令提示符中输入 ipconfig 命令， 在 macOS 中，你可以在终端中输入 ifconfig 命令，在 Linux 中，你可以在终端中输入 ip addr 命令，来找到你的内网 IP 地址。</p>
+<p>如果你在自己的机器上托管了服务器，并且想让非内网客户端连接，那么你可能需要将服务器端口 转发 到你的路由器，由于大多数家用网络都使用 NAT 技术，因此转发服务器端口是让你的服务器能通过互联网访问的必经步骤。Godot 的高级多人 API 只使用 UDP 协议，所以你的端口转发也必须是 UDP 协议的端口，不能只转发 TCP 协议的端口。</p>
+<p>在转发了 UDP 端口之后，你需要确保你的服务器使用这个端口。可以前往这个网站 <a target="_blank" rel="noopener" href="https://icanhazip.com/">https://icanhazip.com/</a>去查询你的公网 IP 地址，然后把这个公网 IP 地址发送给想联机到你服务器的互联网客户端即可。</p>
+<p>Godot 的高级多人联机 API 使用的是一个修改过的 ENet，包含全 IPv6 支持。</p>
+<p>网络初始化</p>
+<h3 id="进行-HTTP-请求"><a href="#进行-HTTP-请求" class="headerlink" title="进行 HTTP 请求"></a>进行 HTTP 请求</h3><h3 id="HTTP-客户端类"><a href="#HTTP-客户端类" class="headerlink" title="HTTP 客户端类"></a>HTTP 客户端类</h3><h3 id="TLS-SSL-证书"><a href="#TLS-SSL-证书" class="headerlink" title="TLS&#x2F;SSL 证书"></a>TLS&#x2F;SSL 证书</h3><h3 id="Using-WebSockets"><a href="#Using-WebSockets" class="headerlink" title="Using WebSockets"></a>Using WebSockets</h3><h3 id="WebRTC"><a href="#WebRTC" class="headerlink" title="WebRTC"></a>WebRTC</h3><h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><h2 id="物理"><a href="#物理" class="headerlink" title="物理"></a>物理</h2><h2 id="平台相关"><a href="#平台相关" class="headerlink" title="平台相关"></a>平台相关</h2><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><h2 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h2><h2 id="着色器"><a href="#着色器" class="headerlink" title="着色器"></a>着色器</h2><h2 id="用户界面（UI）"><a href="#用户界面（UI）" class="headerlink" title="用户界面（UI）"></a>用户界面（UI）</h2><h2 id="XR"><a href="#XR" class="headerlink" title="XR"></a>XR</h2><p>内置了一套模块化扩展现实（XR）系统，该系统通过抽象化不同 XR 平台的底层实现细节，以简化跨平台 XR 应用的开发流程。<br>该系统的核心是 XRServer 类，它作为整个 XR 架构的中枢接口，允许开发者通过该接口发现并连接各类 XR 运行时环境。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io">微光zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io/2025/08/19/%E8%AF%BBGodot4.4%E6%96%87%E6%A1%A3%E6%89%8B%E5%86%8C/">https://wzcwzc10.github.io/2025/08/19/%E8%AF%BBGodot4.4%E6%96%87%E6%A1%A3%E6%89%8B%E5%86%8C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://wzcwzc10.github.io" target="_blank">微光zc的网络小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Godot/">Godot</a><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a><a class="post-meta__tags" href="/tags/%E6%96%87%E6%A1%A3/">文档</a></div><div class="post-share"><div class="social-share" data-image="/./img/jufufu-ht.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>来一杯燃油饮</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/08/14/Godot4.4%20%E7%B1%BB%E5%8F%82%E8%80%83%E6%80%BB%E7%BB%93/" title="Godot4.4 类参考总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Godot4.4 类参考总结</div></div><div class="info-2"><div class="info-item-1">全局@GDScript@GlobalScope 节点NodeAcceptDialogAnimatableBody2DAnimatableBody3DAnimatedSprite2DAnimatedSprite3DAnimationMixerAnimationPlayerAnimationTreeArea2DArea3DAspectRatioContainerAudioListener2DAudioListener3DAudioStreamPlayerAudioStreamPlayer2DAudioStreamPlayer3DBackBufferCopyBaseButtonBone2DBoneAttachment3DBoxContainerButtonCamera2DCamera3DCanvasGroupCanvasItemCanvasLayerCanvasModulateCenterContainerCharacterBody2DCharacterBody3DCheckBoxCheckButtonCodeEditCollisionObject2DCollisionObject3D...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/08/14/Godot4.4%20%E7%B1%BB%E5%8F%82%E8%80%83%E6%80%BB%E7%BB%93/" title="Godot4.4 类参考总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-14</div><div class="info-item-2">Godot4.4 类参考总结</div></div><div class="info-2"><div class="info-item-1">全局@GDScript@GlobalScope 节点NodeAcceptDialogAnimatableBody2DAnimatableBody3DAnimatedSprite2DAnimatedSprite3DAnimationMixerAnimationPlayerAnimationTreeArea2DArea3DAspectRatioContainerAudioListener2DAudioListener3DAudioStreamPlayerAudioStreamPlayer2DAudioStreamPlayer3DBackBufferCopyBaseButtonBone2DBoneAttachment3DBoxContainerButtonCamera2DCamera3DCanvasGroupCanvasItemCanvasLayerCanvasModulateCenterContainerCharacterBody2DCharacterBody3DCheckBoxCheckButtonCodeEditCollisionObject2DCollisionObject3D...</div></div></div></a><a class="pagination-related" href="/2025/08/10/%E8%AF%BBGodot4.4%E6%96%87%E6%A1%A3%E6%9C%89%E6%84%9F%EF%BC%88%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%EF%BC%89/" title="读Godot4.4文档有感（长期更新）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-10</div><div class="info-item-2">读Godot4.4文档有感（长期更新）</div></div><div class="info-2"><div class="info-item-1">本文参考Godot4.4中文文档中  关于 入门 手册的内容进行了总结改进，去除了个人感觉无用的部分  关于特性列表平台可运行编辑器以及导出项目的：Windows    macOS    Linux    Android（实验）    Web（实验） 可运行导出的项目：iOS    主机 编辑器特性：场景树编辑器脚本编辑器支持VS Code、VIM 等外部文本编辑器GDScript 调试器（支持多线程调试）可视化（性能）分析器性能监视工具（可自定义）脚本热重载场景热编辑远程检查器实时相机复制（移动编辑器中的相机，并在正在运行的项目中查看结果）内置离线类参考文档 插件：编辑器插件使用 GDScript 来创建插件资产库下载项目并直接导入 渲染 Forward+。最先进的渲染器，仅适用于桌面端。 Mobile。功能较少，但渲染简单场景的速度更快。适用于移动平台和桌面平台。(移动平台默认使用)以上渲染器使用 Vulkan、Direct3D 12 或 Metal 作为渲染驱动，使用 RenderingDevice 后端。 Compatibility，最低级的图形后端，在 OpenGL 3...</div></div></div></a><a class="pagination-related" href="/2025/08/02/Godot%20IP%E5%9C%B0%E5%9D%80P2P%E8%81%94%E6%9C%BA/" title="Godot IP地址P2P联机"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-02</div><div class="info-item-2">Godot IP地址P2P联机</div></div><div class="info-2"><div class="info-item-1">网络相关TCP 可靠有序速度缓慢UDP 不可靠无序速度快（Godot提供的高级api是用的UDP，支持IPv6）在避免不需要的部分（拥塞&#x2F;流量控制特性、Nagle算法等）的同时，重新构建游戏所需的TCP部分（可选的可靠性和包顺序）一般来说还是有道理的。正因如此，大多数游戏引擎都带有这样的实现，Godot 也不例外。 可以使用低级网络API来实现最大限度的控制，并在完全裸露的网络协议之上实现所有功能也可以使用基于 SceneTree 的高级网络API，该API通常以一种比较优化的方式在后台完成大部分繁重工作。 每个节点都有一个multiplayer属性，它是对场景树为其配置的MultiplayerAPI实例的引用可以对节点单独设置MultiplayerAPI，同时覆盖所有子节点可以实现在一个Godot示例中运行多个服务端和客户端 结束联网multiplayer.multiplayer_peer &#x3D; null导出Android需要勾选INTERNET权限，否则不能联网 代码解析12345678910111213141516171819202122232425262...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">微光zc</div><div class="author-info-description">一个有想法的极客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/178083315"><i class="fab fa-bilibili"></i><span>关注我！</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">世界全剧终，欢迎来到my blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%8B%E5%86%8C"><span class="toc-number">1.</span> <span class="toc-text">手册</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.1.</span> <span class="toc-text">最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Godot-%E4%B8%AD%E5%BA%94%E7%94%A8%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">在 Godot 中应用面向对象原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E7%BB%84%E7%BB%87"><span class="toc-number">1.1.2.</span> <span class="toc-text">场景组织</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E8%84%9A%E6%9C%AC"><span class="toc-number">1.1.3.</span> <span class="toc-text">何时使用场景与脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%B8%B8%E8%A7%84%E8%8A%82%E7%82%B9"><span class="toc-number">1.1.4.</span> <span class="toc-text">自动加载与常规节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%B8%BA%E4%BB%BB%E4%BD%95%E4%BA%8B%E6%83%85%E4%BD%BF%E7%94%A8%E8%8A%82%E7%82%B9"><span class="toc-number">1.1.5.</span> <span class="toc-text">何时以及如何避免为任何事情使用节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Godot-%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.1.6.</span> <span class="toc-text">Godot 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Godot-%E9%80%9A%E7%9F%A5"><span class="toc-number">1.1.7.</span> <span class="toc-text">Godot 通知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%81%8F%E5%A5%BD"><span class="toc-number">1.1.8.</span> <span class="toc-text">数据偏好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%81%8F%E5%A5%BD"><span class="toc-number">1.1.9.</span> <span class="toc-text">逻辑偏好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87"><span class="toc-number">1.1.10.</span> <span class="toc-text">项目组织</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.11.</span> <span class="toc-text">版本控制系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4"><span class="toc-number">1.2.</span> <span class="toc-text">故障排除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="toc-number">1.3.</span> <span class="toc-text">编辑器简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E7%95%8C%E9%9D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">编辑器的界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XR-%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.3.2.</span> <span class="toc-text">XR 编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-%E7%BC%96%E8%BE%91%E5%99%A8%EF%83%81"><span class="toc-number">1.3.3.</span> <span class="toc-text">Android 编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.3.4.</span> <span class="toc-text">Web 编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%8A%9F%E8%83%BD"><span class="toc-number">1.3.5.</span> <span class="toc-text">高级功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E7%BC%96%E8%BE%91%E5%99%A8%E5%8A%9F%E8%83%BD"><span class="toc-number">1.3.6.</span> <span class="toc-text">管理编辑器功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2D"><span class="toc-number">1.4.</span> <span class="toc-text">2D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D"><span class="toc-number">1.5.</span> <span class="toc-text">3D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-number">1.6.</span> <span class="toc-text">动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%BA%BF"><span class="toc-number">1.7.</span> <span class="toc-text">资产管线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91"><span class="toc-number">1.8.</span> <span class="toc-text">音频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%80%BB%E7%BA%BF"><span class="toc-number">1.8.1.</span> <span class="toc-text">音频总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E7%89%B9%E6%95%88"><span class="toc-number">1.8.2.</span> <span class="toc-text">音频特效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%B5%81"><span class="toc-number">1.8.3.</span> <span class="toc-text">音频流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%B8%B8%E6%88%8F%E7%8E%A9%E6%B3%95%E4%B8%8E%E9%9F%B3%E9%A2%91%E5%92%8C%E9%9F%B3%E4%B9%90%E5%90%8C%E6%AD%A5"><span class="toc-number">1.8.4.</span> <span class="toc-text">将游戏玩法与音频和音乐同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%BA%A6%E5%85%8B%E9%A3%8E%E5%BD%95%E9%9F%B3"><span class="toc-number">1.8.5.</span> <span class="toc-text">使用麦克风录音</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E8%BD%AC%E8%AF%AD%E9%9F%B3"><span class="toc-number">1.8.6.</span> <span class="toc-text">文本转语音</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA"><span class="toc-number">1.9.</span> <span class="toc-text">导出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8E%E6%95%B0%E6%8D%AE-I-O"><span class="toc-number">1.10.</span> <span class="toc-text">文件与数据 I&#x2F;O</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BD%E9%99%85%E5%8C%96"><span class="toc-number">1.11.</span> <span class="toc-text">国际化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86"><span class="toc-number">1.12.</span> <span class="toc-text">输入处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6"><span class="toc-number">1.13.</span> <span class="toc-text">数学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA"><span class="toc-number">1.14.</span> <span class="toc-text">导航</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">1.15.</span> <span class="toc-text">网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%A4%9A%E4%BA%BA%E6%B8%B8%E6%88%8F"><span class="toc-number">1.15.1.</span> <span class="toc-text">高级多人游戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C-HTTP-%E8%AF%B7%E6%B1%82"><span class="toc-number">1.15.2.</span> <span class="toc-text">进行 HTTP 请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB"><span class="toc-number">1.15.3.</span> <span class="toc-text">HTTP 客户端类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TLS-SSL-%E8%AF%81%E4%B9%A6"><span class="toc-number">1.15.4.</span> <span class="toc-text">TLS&#x2F;SSL 证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Using-WebSockets"><span class="toc-number">1.15.5.</span> <span class="toc-text">Using WebSockets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebRTC"><span class="toc-number">1.15.6.</span> <span class="toc-text">WebRTC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-number">1.16.</span> <span class="toc-text">性能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86"><span class="toc-number">1.17.</span> <span class="toc-text">物理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3"><span class="toc-number">1.18.</span> <span class="toc-text">平台相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-number">1.19.</span> <span class="toc-text">插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93"><span class="toc-number">1.20.</span> <span class="toc-text">渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">1.21.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-number">1.22.</span> <span class="toc-text">着色器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%EF%BC%88UI%EF%BC%89"><span class="toc-number">1.23.</span> <span class="toc-text">用户界面（UI）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XR"><span class="toc-number">1.24.</span> <span class="toc-text">XR</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/19/%E8%AF%BBGodot4.4%E6%96%87%E6%A1%A3%E6%89%8B%E5%86%8C/" title="读Godot4.4文档手册">读Godot4.4文档手册</a><time datetime="2025-08-19T11:00:00.000Z" title="发表于 2025-08-19 19:00:00">2025-08-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/14/Godot4.4%20%E7%B1%BB%E5%8F%82%E8%80%83%E6%80%BB%E7%BB%93/" title="Godot4.4 类参考总结">Godot4.4 类参考总结</a><time datetime="2025-08-14T11:00:00.000Z" title="发表于 2025-08-14 19:00:00">2025-08-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/10/%E8%AF%BBGodot4.4%E6%96%87%E6%A1%A3%E6%9C%89%E6%84%9F%EF%BC%88%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%EF%BC%89/" title="读Godot4.4文档有感（长期更新）">读Godot4.4文档有感（长期更新）</a><time datetime="2025-08-10T11:00:00.000Z" title="发表于 2025-08-10 19:00:00">2025-08-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/02/Godot%20IP%E5%9C%B0%E5%9D%80P2P%E8%81%94%E6%9C%BA/" title="Godot IP地址P2P联机">Godot IP地址P2P联机</a><time datetime="2025-08-02T10:00:00.000Z" title="发表于 2025-08-02 18:00:00">2025-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/28/Godot%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/" title="Godot进阶学习">Godot进阶学习</a><time datetime="2025-07-28T10:00:00.000Z" title="发表于 2025-07-28 18:00:00">2025-07-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/./img/page-ym.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By 微光zc</span></div><div class="footer_custom_text">世界全剧终，欢迎来到my blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"data-lang":"zh-CN","data-reactions-enabled":"1","data-input-position":"top"}
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'wzcwzc10/wzcwzc10.github.io',
+      'data-repo-id': 'R_kgDOPIIccg',
+      'data-category-id': 'DIC_kwDOPIIccs4CtHqc',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="https://cdn.jsdelivr.net/gh/weilain/cdn-photo/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="13985424074" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script id="canvas_nest" defer="defer" color="255,255,0" opacity="0.6" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="微光zc,ヾ(≧▽≦*)o,ヾ(^▽^*),ヾ(≧∇≦*)ゝ,ヾ(^_^)o,ヾ(•ω•`)o,ヾ(￣3￣.￣3),ヾ(￣▽￣),ヾ(￣0￣)o" data-fontsize="30px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html><script type="text/javascript" src="/js/crash_cheat.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.css"><div id="sakana-widget" style="position:fixed;bottom:5px;right:80px;"></div><script>function initSakanaWidget() {
+  const jufufuht = SakanaWidget.getCharacter('chisato');
+  jufufuht.image = `../img/jufufu-ht.gif`;
+  jufufuht.initialState = {
+    ...jufufuht.initialState,
+    i: 0.001,
+    d: 1,
+  };
+  SakanaWidget.registerCharacter('jufufuht', jufufuht);
+  new SakanaWidget({ character: 'jufufuht' }).mount('#sakana-widget');
+
+  const jufufu = SakanaWidget.getCharacter('takina');
+  jufufu.image = `../img/jufufu.png`;
+  SakanaWidget.registerCharacter('jufufu', jufufu);
+  new SakanaWidget({ character: 'jufufu' }).mount('#sakana-widget');
+}
+nextCharacter(jufufuht);</script><script async onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.js"></script>
