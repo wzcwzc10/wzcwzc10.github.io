@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2D寻路研究 | 微光zc的网络小窝</title><meta name="author" content="微光zc"><meta name="copyright" content="微光zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="2D寻路研究">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2D寻路研究">
+<meta property="og:url" content="https://wzcwzc10.github.io/2025/10/12/2D%E5%AF%BB%E8%B7%AF%E7%A0%94%E7%A9%B6/index.html">
+<meta property="og:site_name" content="微光zc的网络小窝">
+<meta property="og:description" content="2D寻路研究">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif">
+<meta property="article:published_time" content="2025-10-12T14:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-13T12:29:00.270Z">
+<meta property="article:author" content="微光zc">
+<meta property="article:tag" content="2D寻路">
+<meta property="article:tag" content="研究">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wzcwzc10.github.io/img/jufufu-ht.gif"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2D寻路研究",
+  "url": "https://wzcwzc10.github.io/2025/10/12/2D%E5%AF%BB%E8%B7%AF%E7%A0%94%E7%A9%B6/",
+  "image": "https://wzcwzc10.github.io/img/jufufu-ht.gif",
+  "datePublished": "2025-10-12T14:00:00.000Z",
+  "dateModified": "2025-10-13T12:29:00.270Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "微光zc",
+      "url": "https://wzcwzc10.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/./img/loading.gif"><link rel="canonical" href="https://wzcwzc10.github.io/2025/10/12/2D%E5%AF%BB%E8%B7%AF%E7%A0%94%E7%A9%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2D寻路研究',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/ziti.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/components/bilibili-card/bilibili-card.dark.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/./img/page-bg.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/./img/page-ym.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/./img/yx.png" alt="Logo"><span class="site-name">微光zc的网络小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">2D寻路研究</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2D寻路研究</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-12T14:00:00.000Z" title="发表于 2025-10-12 22:00:00">2025-10-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-13T12:29:00.270Z" title="更新于 2025-10-13 20:29:00">2025-10-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="AStar2D"><a href="#AStar2D" class="headerlink" title="AStar2D"></a>AStar2D</h1><p>A* 的一种实现，用于查找 2D 空间中连通图上两个顶点之间的最短路径。</p>
+<h1 id="navigation-astar-项目解析"><a href="#navigation-astar-项目解析" class="headerlink" title="navigation_astar 项目解析"></a>navigation_astar 项目解析</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">extends TileMap</span><br><span class="line"># 定义了一个枚举。这是一种给数字起名字的方式(0,1,2)，让代码更具可读性。</span><br><span class="line">enum Tile &#123; OBSTACLE, START_POINT, END_POINT &#125;</span><br><span class="line"></span><br><span class="line"># 定义瓦片尺寸（宽和高）</span><br><span class="line">const CELL_SIZE = Vector2i(64, 64)</span><br><span class="line"># 定义用于绘制路径的线条</span><br><span class="line">const BASE_LINE_WIDTH = 3.0 # 宽度</span><br><span class="line">const DRAW_COLOR = Color.WHITE * Color(1, 1, 1, 0.5) # 颜色</span><br><span class="line"></span><br><span class="line"># 创建 AStarGrid2D 实例</span><br><span class="line"># Godot 内置专门用于2D网格上进行路径寻找的工具，底层使用 A* 算法。</span><br><span class="line">var _astar = AStarGrid2D.new()</span><br><span class="line"></span><br><span class="line"># 用于存储路径计算的起点和终点在瓦片坐标系（Grid-based）位置</span><br><span class="line">var _start_point = Vector2i()</span><br><span class="line">var _end_point = Vector2i()</span><br><span class="line"># 用于存储计算的路径上所有点的局部坐标系（Pixel-based）位置</span><br><span class="line">var _path = PackedVector2Array()</span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line">    # 定义 A* 算法工作的网格范围</span><br><span class="line">    # Rect2i(x, y, width, height)</span><br><span class="line">    # 注意：这里的尺寸是硬编码的（18x10）如果地图大小会改变需要动态计算,例如通过 get_used_rect()</span><br><span class="line">	_astar.region = Rect2i(0, 0, 18, 10)</span><br><span class="line">    # 将 A* 网格的单元格大小设置为与瓦片大小一致</span><br><span class="line">	_astar.cell_size = CELL_SIZE</span><br><span class="line">    # 将 A* 节点的位置设置在瓦片中心</span><br><span class="line">	_astar.offset = CELL_SIZE * 0.5</span><br><span class="line">    # 设置 A* 启发式函数为曼哈顿距离</span><br><span class="line">	_astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN</span><br><span class="line">	_astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN</span><br><span class="line">	_astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER # 禁止对角线移动</span><br><span class="line">	_astar.update() # 应用以上所有设置</span><br><span class="line"></span><br><span class="line">    # 遍历 _astar.region 定义的整个网格范围</span><br><span class="line">	for i in range(_astar.region.position.x, _astar.region.end.x):</span><br><span class="line">		for j in range(_astar.region.position.y, _astar.region.end.y):</span><br><span class="line">			var pos = Vector2i(i, j)</span><br><span class="line">			if get_cell_source_id(0, pos) == Tile.OBSTACLE:</span><br><span class="line">				_astar.set_point_solid(pos)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func _draw():</span><br><span class="line">	if _path.is_empty():</span><br><span class="line">		return</span><br><span class="line"></span><br><span class="line">	var last_point = _path[0] # 获取路径的第一个点</span><br><span class="line">	for index in range(1, len(_path)): # 从路径的第二个点开始遍历</span><br><span class="line">		var current_point = _path[index]</span><br><span class="line">		draw_line(last_point, current_point, DRAW_COLOR, BASE_LINE_WIDTH, true) # 绘制线段</span><br><span class="line">		draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR) # 绘制圆形</span><br><span class="line">		last_point = current_point # 更新 last_point，为下一次循环做准备</span><br><span class="line"></span><br><span class="line"># 接收一个像素坐标，先将其转换为瓦片坐标 (local_to_map)，然后再转换回像素坐标 (map_to_local)。</span><br><span class="line"># 这样做的效果是，无论你传入哪个像素点，它都会返回该像素点所在瓦片的左上角像素坐标。</span><br><span class="line"># 这常用于将一个自由移动的物体 “吸附” 到网格上。</span><br><span class="line">func round_local_position(local_position):</span><br><span class="line">	return map_to_local(local_to_map(local_position))</span><br><span class="line"></span><br><span class="line"># 判断一个像素点所在的瓦片是否可以通过</span><br><span class="line">func is_point_walkable(local_position):</span><br><span class="line">	var map_position = local_to_map(local_position)</span><br><span class="line">	if _astar.is_in_boundsv(map_position):</span><br><span class="line">		return not _astar.is_point_solid(map_position)</span><br><span class="line">	return false</span><br><span class="line"></span><br><span class="line"># 用于清除上一次计算的路径</span><br><span class="line">func clear_path():</span><br><span class="line">	if not _path.is_empty():</span><br><span class="line">		_path.clear()</span><br><span class="line">		erase_cell(0, _start_point)</span><br><span class="line">		erase_cell(0, _end_point)</span><br><span class="line">		# 触发 _draw() 函数，清除屏幕上已绘制的路径线条和圆点</span><br><span class="line">		queue_redraw()</span><br><span class="line"></span><br><span class="line"># 这是外部调用者最常用的函数，用于计算新路径</span><br><span class="line">func find_path(local_start_point, local_end_point):</span><br><span class="line">	clear_path()</span><br><span class="line">	# 将传入的像素坐标转换为瓦片坐标</span><br><span class="line">	_start_point = local_to_map(local_start_point)</span><br><span class="line">	_end_point = local_to_map(local_end_point)</span><br><span class="line"></span><br><span class="line">	# 调用 A* 算法，返回一个包含路径上所有点（像素坐标，且是瓦片中心）的 PackedVector2Array。如果找不到路径，该数组将为空。</span><br><span class="line">	_path = _astar.get_point_path(_start_point, _end_point)</span><br><span class="line"></span><br><span class="line">	if not _path.is_empty():</span><br><span class="line">		# 放置瓦片</span><br><span class="line">		set_cell(0, _start_point, 0, Vector2i(Tile.START_POINT, 0))</span><br><span class="line">		set_cell(0, _end_point, 0, Vector2i(Tile.END_POINT, 0))</span><br><span class="line"></span><br><span class="line">	# 触发 _draw() 函数，在屏幕上绘制出新的路径。</span><br><span class="line">	queue_redraw()</span><br><span class="line"></span><br><span class="line">	return _path.duplicate()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">extends Node2D</span><br><span class="line"></span><br><span class="line"># 定义了角色两种状态</span><br><span class="line">enum State &#123; IDLE, FOLLOW &#125;</span><br><span class="line"># 用于 “转向行为” 的一个物理参数。可以理解为“惯性”。</span><br><span class="line">const MASS = 10.0</span><br><span class="line"># 到达距离。当角色与目标点的距离小于这个值时，就认为它已经到达了该点。</span><br><span class="line">const ARRIVE_DISTANCE = 10.0</span><br><span class="line"></span><br><span class="line">@export var speed: float = 200.0</span><br><span class="line"></span><br><span class="line">var _state = State.IDLE # 角色当前状态</span><br><span class="line">var _velocity = Vector2() # 角色当前速度向量</span><br><span class="line"></span><br><span class="line">@onready var _tile_map = $&quot;../TileMap&quot;</span><br><span class="line"></span><br><span class="line">var _click_position = Vector2() # 存储玩家最后一次点击鼠标的全局位置</span><br><span class="line">var _path = PackedVector2Array() # 存储从 TileMap 获取的路径点数组</span><br><span class="line">var _next_point = Vector2() #存储路径中下一个要移动到的目标点</span><br><span class="line"></span><br><span class="line">func _ready():</span><br><span class="line">	_change_state(State.IDLE) # 初始化为 IDLE 状态</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func _process(_delta):</span><br><span class="line">	if _state != State.FOLLOW:</span><br><span class="line">		return</span><br><span class="line">	# 调用 _move_to 函数，让角色向 _next_point 移动。该函数会返回一个布尔值，表示是否到达了目标点。</span><br><span class="line">	var arrived_to_next_point = _move_to(_next_point)</span><br><span class="line">	if arrived_to_next_point:</span><br><span class="line">		_path.remove_at(0)</span><br><span class="line">		if _path.is_empty():</span><br><span class="line">			_change_state(State.IDLE)</span><br><span class="line">			return</span><br><span class="line">		_next_point = _path[0]</span><br><span class="line"></span><br><span class="line"># Godot 的输入处理函数之一，接收所有未被其他 UI 元素（如按钮）消耗掉的输入事件。</span><br><span class="line">func _unhandled_input(event):</span><br><span class="line">	_click_position = get_global_mouse_position() # 无论点击什么，都先更新 _click_position 为当前鼠标的全局坐标。</span><br><span class="line">	if _tile_map.is_point_walkable(_click_position): # 调用 TileMap 脚本中的 is_point_walkable 函数，判断鼠标点击的位置是否是可通过瓦片</span><br><span class="line">		if event.is_action_pressed(&amp;&quot;teleport_to&quot;, false, true): #  判断是否按下了 teleport_to 动作（鼠标右键）</span><br><span class="line">			_change_state(State.IDLE)</span><br><span class="line">			global_position = _tile_map.round_local_position(_click_position) # 直接设置位置</span><br><span class="line">		elif event.is_action_pressed(&amp;&quot;move_to&quot;): # 判断是否按下了 move_to 动作（鼠标左键）</span><br><span class="line">			_change_state(State.FOLLOW)</span><br><span class="line"></span><br><span class="line">#  接收一个目标点（_next_point）作为参数</span><br><span class="line">func _move_to(local_position):</span><br><span class="line">	var desired_velocity = (local_position - position).normalized() * speed # 得到速度向量</span><br><span class="line">	var steering = desired_velocity - _velocity # 获取“转向行为”向量</span><br><span class="line">	_velocity += steering / MASS # 将转向力除以质量，得到加速度。</span><br><span class="line">	position += _velocity * get_process_delta_time() # 根据更新后的速度和帧时间（delta）来移动角色的位置</span><br><span class="line">	rotation = _velocity.angle() # 让角色的旋转角度始终朝向其移动的方向</span><br><span class="line">	return position.distance_to(local_position) &lt; ARRIVE_DISTANCE # 判断是否到达目标点</span><br><span class="line"></span><br><span class="line"># 这是一个状态机的核心，负责处理状态切换时的逻辑。</span><br><span class="line">func _change_state(new_state):</span><br><span class="line">	if new_state == State.IDLE:</span><br><span class="line">		_tile_map.clear_path() # 调用 TileMap 的 clear_path() 函数</span><br><span class="line">	elif new_state == State.FOLLOW:</span><br><span class="line">		#  调用 TileMap 的 find_path 函数，传入角色当前的位置和之前记录的鼠标点击位置，获取一条路径。</span><br><span class="line">		_path = _tile_map.find_path(position, _click_position)</span><br><span class="line">		if _path.size() &lt; 2: # 路径数组的大小小于 2，意味着 TileMap 没有找到有效路径</span><br><span class="line">			_change_state(State.IDLE)</span><br><span class="line">			return</span><br><span class="line">		_next_point = _path[1] # 设置下一个目标点</span><br><span class="line">	_state = new_state # 更新状态</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io">微光zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io/2025/10/12/2D%E5%AF%BB%E8%B7%AF%E7%A0%94%E7%A9%B6/">https://wzcwzc10.github.io/2025/10/12/2D%E5%AF%BB%E8%B7%AF%E7%A0%94%E7%A9%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://wzcwzc10.github.io" target="_blank">微光zc的网络小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/2D%E5%AF%BB%E8%B7%AF/">2D寻路</a><a class="post-meta__tags" href="/tags/%E7%A0%94%E7%A9%B6/">研究</a></div><div class="post-share"><div class="social-share" data-image="/./img/jufufu-ht.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>来一杯燃油饮</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/10/11/%E5%85%AD%E8%BE%B9%E5%BD%A2%E7%BD%91%E6%A0%BC%E7%A0%94%E7%A9%B6/" title="六边形网格研究"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">六边形网格研究</div></div><div class="info-2"><div class="info-item-1">六边形网格研究</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/10/11/%E5%85%AD%E8%BE%B9%E5%BD%A2%E7%BD%91%E6%A0%BC%E7%A0%94%E7%A9%B6/" title="六边形网格研究"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-11</div><div class="info-item-2">六边形网格研究</div></div><div class="info-2"><div class="info-item-1">六边形网格研究</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">微光zc</div><div class="author-info-description">一个有想法的极客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/178083315"><i class="fab fa-bilibili"></i><span>关注我！</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">世界全剧终，欢迎来到my blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AStar2D"><span class="toc-number">1.</span> <span class="toc-text">AStar2D</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#navigation-astar-%E9%A1%B9%E7%9B%AE%E8%A7%A3%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">navigation_astar 项目解析</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/12/2D%E5%AF%BB%E8%B7%AF%E7%A0%94%E7%A9%B6/" title="2D寻路研究">2D寻路研究</a><time datetime="2025-10-12T14:00:00.000Z" title="发表于 2025-10-12 22:00:00">2025-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/11/%E5%85%AD%E8%BE%B9%E5%BD%A2%E7%BD%91%E6%A0%BC%E7%A0%94%E7%A9%B6/" title="六边形网格研究">六边形网格研究</a><time datetime="2025-10-11T14:00:00.000Z" title="发表于 2025-10-11 22:00:00">2025-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/14/Blender%E5%AF%BC%E5%85%A5PMX%E6%A8%A1%E5%9E%8B/" title="Blender导入PMX模型">Blender导入PMX模型</a><time datetime="2025-09-14T04:00:00.000Z" title="发表于 2025-09-14 12:00:00">2025-09-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/19/%E8%AF%BBGodot4.5%E6%96%87%E6%A1%A3%E6%89%8B%E5%86%8C/" title="读Godot4.5文档手册">读Godot4.5文档手册</a><time datetime="2025-08-19T11:00:00.000Z" title="发表于 2025-08-19 19:00:00">2025-08-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/14/Godot4.4%20%E7%B1%BB%E5%8F%82%E8%80%83%E6%80%BB%E7%BB%93/" title="Godot4.4 类参考总结">Godot4.4 类参考总结</a><time datetime="2025-08-14T11:00:00.000Z" title="发表于 2025-08-14 19:00:00">2025-08-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/./img/page-ym.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By 微光zc</span></div><div class="footer_custom_text">世界全剧终，欢迎来到my blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"data-lang":"zh-CN","data-reactions-enabled":"1","data-input-position":"top"}
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'wzcwzc10/wzcwzc10.github.io',
+      'data-repo-id': 'R_kgDOPIIccg',
+      'data-category-id': 'DIC_kwDOPIIccs4CtHqc',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="https://cdn.jsdelivr.net/gh/weilain/cdn-photo/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="13985424074" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script id="canvas_nest" defer="defer" color="255,255,0" opacity="0.6" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="微光zc,GitHub" data-fontsize="29px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html><script type="text/javascript" src="/js/crash_cheat.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.css"><div id="sakana-widget" style="position:fixed;bottom:5px;right:80px;"></div><script>function initSakanaWidget() {
+  const jufufuht = SakanaWidget.getCharacter('chisato');
+  jufufuht.image = `https://wzcwzc10.github.io/img/jufufu.png`;
+  jufufuht.initialState = {
+    ...jufufuht.initialState,
+    i: 0.001,
+    d: 1,
+  };
+  SakanaWidget.registerCharacter('jufufuht', jufufuht);
+  new SakanaWidget({ character: 'jufufuht' }).mount('#sakana-widget');
+
+  const jufufu = SakanaWidget.getCharacter('takina');
+  jufufu.image = `https://wzcwzc10.github.io/img/jufufu-ht.gif`;
+  SakanaWidget.registerCharacter('jufufu', jufufu);
+  new SakanaWidget({ character: 'jufufu' }).mount('#sakana-widget');
+}
+nextCharacter(jufufuht);</script><script async onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.js"></script>
