@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>JWT 和 Session的区别 | 微光zc的网络小窝</title><meta name="author" content="微光zc"><meta name="copyright" content="微光zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="JWT 和 Session的区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JWT 和 Session的区别">
+<meta property="og:url" content="https://wzcwzc10.github.io/2025/11/27/JWT%20%E5%92%8C%20Session%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="微光zc的网络小窝">
+<meta property="og:description" content="JWT 和 Session的区别">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wzcwzc10.github.io/img/YH/hebian.png">
+<meta property="article:published_time" content="2025-11-27T02:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-27T02:02:29.602Z">
+<meta property="article:author" content="微光zc">
+<meta property="article:tag" content="JWT">
+<meta property="article:tag" content="Session">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wzcwzc10.github.io/img/YH/hebian.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JWT 和 Session的区别",
+  "url": "https://wzcwzc10.github.io/2025/11/27/JWT%20%E5%92%8C%20Session%E7%9A%84%E5%8C%BA%E5%88%AB/",
+  "image": "https://wzcwzc10.github.io/img/YH/hebian.png",
+  "datePublished": "2025-11-27T02:00:00.000Z",
+  "dateModified": "2025-11-27T02:02:29.602Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "微光zc",
+      "url": "https://wzcwzc10.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/./img/loading.gif"><link rel="canonical" href="https://wzcwzc10.github.io/2025/11/27/JWT%20%E5%92%8C%20Session%E7%9A%84%E5%8C%BA%E5%88%AB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.4/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JWT 和 Session的区别',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/ziti.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/components/bilibili-card/bilibili-card.dark.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/./img/page-bg.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">62</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/./img/YH/hebian.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/./img/yx.png" alt="Logo"><span class="site-name">微光zc的网络小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">JWT 和 Session的区别</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">JWT 和 Session的区别</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-27T02:00:00.000Z" title="发表于 2025-11-27 10:00:00">2025-11-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-27T02:02:29.602Z" title="更新于 2025-11-27 10:02:29">2025-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Authentication-和-Authorization"><a href="#Authentication-和-Authorization" class="headerlink" title="Authentication 和 Authorization"></a>Authentication 和 Authorization</h1><p>Authentication：用户认证，验证用户的身份。<br>Authorization：授权，指确认身份后提供操作权限。</p>
+<p>http协议是无状态的，每一次请求都无状态。<br>当一个用户通过用户名和密码登录了之后，他的下一个请求不会携带任何状态，应用程序无法知道他的身份，那就必须重新认证。<br>因此我们希望用户登录成功之后的每一次http请求，都能够保存他的登录状态。</p>
+<p>目前主流的用户认证方法有两种方式：</p>
+<ul>
+<li>基于token</li>
+<li>基于session</li>
+</ul>
+<h1 id="基于session的用户认证"><a href="#基于session的用户认证" class="headerlink" title="基于session的用户认证"></a>基于session的用户认证</h1><ol>
+<li>用户登录</li>
+<li>服务器验证信息并创建一个 session 存储在数据库中</li>
+<li>服务器为用户生成一个 sessionId，将具有 sesssionId 的 Cookie 放置在用户浏览器中</li>
+<li>后续请求中根据数据库验证sessionID</li>
+<li>用户注销，会话在客户端和服务器端都被销毁</li>
+</ol>
+<h1 id="基于token（令牌）的用户认证"><a href="#基于token（令牌）的用户认证" class="headerlink" title="基于token（令牌）的用户认证"></a>基于token（令牌）的用户认证</h1><p>最常用的是 JSON Web Token（JWT）</p>
+<ol>
+<li>用户登录</li>
+<li>服务器验证信息并返回已签名的 token 存储在客户端中（存在local storage 或 cookie中）</li>
+<li>之后的HTTP请求都将token添加到请求头里</li>
+<li>服务器解码JWT，并且如果令牌有效，则接受请求</li>
+<li>用户注销，令牌在客户端被销毁，不需要与服务器进行交互一个关键是，令牌是无状态的（后端服务器不用保存令牌或当前session的记录）</li>
+</ol>
+<h1 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h1><p>jwt的认证原理：<br>一个jwt实际上就是一个字符串，由三部分组成(json格式)：</p>
+<ul>
+<li><p>头部（header）<br>用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等。<br><code>&#123;&quot;typ&quot;: &quot;JWT&quot;,  &quot;alg&quot;: &quot;HS256&quot;&#125;</code><br>这是一个JWT，所用的签名算法是HS256算法。</p>
+</li>
+<li><p>载荷（payload）<br>载荷可以用来放一些不敏感的信息。<br><code>&#123;&quot;iss&quot;: ohn Wu JWT&quot;, &quot;iat&quot;: 1441593502, &quot;exp&quot;: 1441594722, &quot;aud&quot;: &quot;www.example.com&quot;, &quot;sub&quot;: &quot;jrocket@example.com&quot;, &quot;from_user&quot;: &quot;B&quot;, &quot;target_user&quot;: &quot;A&quot;&#125;</code><br>这里面的前五个字段都是由JWT的标准所定义的。<br>iss: 该JWT的签发者<br>sub: 该JWT所面向的用户<br>aud: 接收该JWT的一方<br>exp(expires): 什么时候过期，这里是一个Unix时间戳<br>iat(issued at): 在什么时候签发的 把头部和载荷分别进行Base64编码之后得到两个字符串，然后再将这两个编码后的字符串用英文句号.连接在一起（头部在前），形成新的字符串：<br><code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcm9tX3VzZXIiOiJCIiwidGFyZ2V0X3VzZXIiOiJBIn</code></p>
+</li>
+<li><p>签名（signature）<br>最后将上面拼接完的字符串用HS256算法进行加密。<br>在加密的时候需要提供一个密钥（secret）。<br>加密后的内容也是一个字符串，最后这个字符串就是签名，把这个签名拼接在刚才的字符串后面就能得到完整的jwt。<br>header部分和payload部分如果被篡改，由于篡改者不知道密钥是什么，也无法生成新的signature部分，服务端也就无法通过<br>在jwt中消息体是透明的，使用签名可以保证消息不被篡改。<br><code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcm9tX3VzZXIiOiJCIiwidGFyZ2V0X3VzZXIiOiJBIn</code></p>
+</li>
+</ul>
+<h1 id="区别和优缺点"><a href="#区别和优缺点" class="headerlink" title="区别和优缺点"></a>区别和优缺点</h1><p>主要区别：<br>用户的状态保存的位置，session保存在服务端的，而jwt保存在客户端的。</p>
+<p>jwt的优点：</p>
+<ol>
+<li>可扩展性好 应用程序分布式部署的情况下，session需要做多机数据共享，通常可以存在数据库或者redis里面。而jwt不需要。</li>
+<li>无状态 jwt不在服务端存储任何状态。RESTful API的原则之一是无状态，发出请求时，总会返回带有参数的响应，不会产生附加影响。<br>  用户的认证状态引入这种附加影响，这破坏了这一原则。<br>  另外jwt的载荷中可以存储一些常用信息，用于交换信息，有效地使用 JWT，可以降低服务器查询数据库的次数。</li>
+</ol>
+<p>jwt的缺点：</p>
+<ol>
+<li>安全性<br>  由于jwt的payload使用base64编码，没有加密，因此jwt中不能存储敏感数据。<br>  而session的信息是存在服务端的，相对来说更安全。</li>
+<li>性能<br>  jwt太长。由于是无状态使用JWT，所有的数据都被放到JWT里，如果还要进行一些数据交换，那载荷会更大，经过编码之后导致jwt非常长，cookie的限制大小一般是4k，cookie很可能放不下，所以jwt一般放在local storage里面。<br>  并且用户在系统中的每一次http请求都会把jwt携带在Header里面，http请求的Header可能比Body还要大。而sessionId只是很短的一个字符串，因此使用jwt的http请求比使用session的开销大得多。</li>
+<li>一次性<br>  无状态导致了jwt是一次性的。想修改里面的内容，就必须签发一个新的jwt。</li>
+<li>无法废弃 一旦签发一个jwt，在到期之前就会始终有效，无法中途废弃。<br>  例如你在payload中存储了一些信息，当信息需要更新时，则重新签发一个jwt，但是由于旧的jwt还没过期，拿着这个旧的jwt依旧可以登录，那登录后服务端从jwt中拿到的信息就是过时的。<br>  为了解决这个问题就需要在服务端部署额外的逻辑，例如设置一个黑名单，一旦签发了新的jwt，那么旧的就加入黑名单（比如存到redis里面），避免被再次使用。</li>
+<li>续签 如果你使用jwt做会话管理，传统的cookie续签方案一般都是框架自带的，session有效期30分钟，30分钟内如果有访问，有效期被刷新至30分钟。<br>  一样的道理，要改变jwt的有效时间，就要签发新的jwt。最简单的一种方式是每次请求刷新jwt，即每个http请求都返回一个新的jwt。这个方法不仅暴力不优雅，而且每次请求都要做jwt的加密解密，会带来性能问题。<br>  另一种方法是在redis中单独为每个jwt设置过期时间，每次访问时刷新jwt的过期时间。</li>
+<li>可以看出想要破解jwt一次性的特性，就需要在服务端存储jwt的状态。但是引入 redis 之后，就把无状态的jwt硬生生变成了有状态了，违背了jwt的初衷。而且这个方案和session都差不多了。</li>
+</ol>
+<p>适合使用jwt的场景：</p>
+<ul>
+<li>有效期短</li>
+<li>只希望被使用一次<br>比如，验证码就适合使用jwt。<br>而由于jwt具有一次性的特性。<br>单点登录和会话管理非常不适合用jwt，如果在服务端部署额外的逻辑存储jwt的状态，那还不如使用session。基于session有很多成熟的框架可以开箱即用，但是用jwt还要自己实现逻辑。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io">微光zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io/2025/11/27/JWT%20%E5%92%8C%20Session%E7%9A%84%E5%8C%BA%E5%88%AB/">https://wzcwzc10.github.io/2025/11/27/JWT%20%E5%92%8C%20Session%E7%9A%84%E5%8C%BA%E5%88%AB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://wzcwzc10.github.io" target="_blank">微光zc的网络小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JWT/">JWT</a><a class="post-meta__tags" href="/tags/Session/">Session</a></div><div class="post-share"><div class="social-share" data-image="/./img/YH/hebian.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>来一杯燃油饮</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/11/25/Swagger%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="Swagger 学习总结"><img class="cover" src="/./img/YH/yek.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Swagger 学习总结</div></div><div class="info-2"><div class="info-item-1">Swagger 学习总结</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">微光zc</div><div class="author-info-description">一个有想法的极客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">62</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/178083315"><i class="fab fa-bilibili"></i><span>关注我！</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">世界全剧终，欢迎来到my blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Authentication-%E5%92%8C-Authorization"><span class="toc-number">1.</span> <span class="toc-text">Authentication 和 Authorization</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Esession%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">基于session的用户认证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Etoken%EF%BC%88%E4%BB%A4%E7%89%8C%EF%BC%89%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81"><span class="toc-number">3.</span> <span class="toc-text">基于token（令牌）的用户认证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JWT"><span class="toc-number">4.</span> <span class="toc-text">JWT</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">5.</span> <span class="toc-text">区别和优缺点</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/11/27/JWT%20%E5%92%8C%20Session%E7%9A%84%E5%8C%BA%E5%88%AB/" title="JWT 和 Session的区别"><img src="/./img/YH/hebian.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JWT 和 Session的区别"/></a><div class="content"><a class="title" href="/2025/11/27/JWT%20%E5%92%8C%20Session%E7%9A%84%E5%8C%BA%E5%88%AB/" title="JWT 和 Session的区别">JWT 和 Session的区别</a><time datetime="2025-11-27T02:00:00.000Z" title="发表于 2025-11-27 10:00:00">2025-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/25/Swagger%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="Swagger 学习总结"><img src="/./img/YH/yek.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Swagger 学习总结"/></a><div class="content"><a class="title" href="/2025/11/25/Swagger%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="Swagger 学习总结">Swagger 学习总结</a><time datetime="2025-11-25T12:30:00.000Z" title="发表于 2025-11-25 20:30:00">2025-11-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/25/Maven%20%E6%B7%BB%E5%8A%A0%E4%BB%93%E5%BA%93/" title="Maven 添加仓库"><img src="/./img/YH/2/ailisi2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Maven 添加仓库"/></a><div class="content"><a class="title" href="/2025/11/25/Maven%20%E6%B7%BB%E5%8A%A0%E4%BB%93%E5%BA%93/" title="Maven 添加仓库">Maven 添加仓库</a><time datetime="2025-11-25T11:00:00.000Z" title="发表于 2025-11-25 19:00:00">2025-11-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/24/%E4%BC%99%E4%BC%B4%E5%8C%B9%E9%85%8D/" title="伙伴匹配"><img src="/./img/YH/jtw.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="伙伴匹配"/></a><div class="content"><a class="title" href="/2025/11/24/%E4%BC%99%E4%BC%B4%E5%8C%B9%E9%85%8D/" title="伙伴匹配">伙伴匹配</a><time datetime="2025-11-24T01:00:00.000Z" title="发表于 2025-11-24 09:00:00">2025-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/23/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" title="前后端跨域问题总结"><img src="/./img/YH/2/anbi2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前后端跨域问题总结"/></a><div class="content"><a class="title" href="/2025/11/23/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" title="前后端跨域问题总结">前后端跨域问题总结</a><time datetime="2025-11-23T09:00:00.000Z" title="发表于 2025-11-23 17:00:00">2025-11-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/./img/YH/hebian.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 微光zc</span></div><div class="footer_custom_text">世界全剧终，欢迎来到my blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.4/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'wzcwzc10/wzcwzc10.github.io',
+      'data-repo-id': 'R_kgDOPIIccg',
+      'data-category-id': 'DIC_kwDOPIIccs4CtHqc',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="https://cdn.jsdelivr.net/gh/weilain/cdn-photo/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="13985424074" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script id="canvas_nest" defer="defer" color="255,255,0" opacity="0.6" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-show-text.min.js" data-mobile="true" data-text="微光zc,GitHub" data-fontsize="29px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html><script type="text/javascript" src="/js/crash_cheat.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.css"><div id="sakana-widget" style="position:fixed;bottom:5px;right:80px;"></div><script>function initSakanaWidget() {
+  const jufufuht = SakanaWidget.getCharacter('chisato');
+  jufufuht.image = `https://wzcwzc10.github.io/img/jufufu.png`;
+  jufufuht.initialState = {
+    ...jufufuht.initialState,
+    i: 0.001,
+    d: 1,
+  };
+  SakanaWidget.registerCharacter('jufufuht', jufufuht);
+  new SakanaWidget({ character: 'jufufuht' }).mount('#sakana-widget');
+
+  const jufufu = SakanaWidget.getCharacter('takina');
+  jufufu.image = `https://wzcwzc10.github.io/img/jufufu-ht.gif`;
+  SakanaWidget.registerCharacter('jufufu', jufufu);
+  new SakanaWidget({ character: 'jufufu' }).mount('#sakana-widget');
+}
+nextCharacter(jufufuht);</script><script async onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.js"></script>
