@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI控制键盘研究 | 微光zc的网络小窝</title><meta name="author" content="微光zc"><meta name="copyright" content="微光zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="AI控制键盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI控制键盘研究">
+<meta property="og:url" content="https://wzcwzc10.github.io/2025/12/08/AI%E6%8E%A7%E5%88%B6%E9%94%AE%E7%9B%98%E7%A0%94%E7%A9%B6/index.html">
+<meta property="og:site_name" content="微光zc的网络小窝">
+<meta property="og:description" content="AI控制键盘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wzcwzc10.github.io/img/YH/zzz.jpg">
+<meta property="article:published_time" content="2025-12-08T14:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-11T12:18:40.914Z">
+<meta property="article:author" content="微光zc">
+<meta property="article:tag" content="研究">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wzcwzc10.github.io/img/YH/zzz.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI控制键盘研究",
+  "url": "https://wzcwzc10.github.io/2025/12/08/AI%E6%8E%A7%E5%88%B6%E9%94%AE%E7%9B%98%E7%A0%94%E7%A9%B6/",
+  "image": "https://wzcwzc10.github.io/img/YH/zzz.jpg",
+  "datePublished": "2025-12-08T14:00:00.000Z",
+  "dateModified": "2025-12-11T12:18:40.914Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "微光zc",
+      "url": "https://wzcwzc10.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/./img/loading.gif"><link rel="canonical" href="https://wzcwzc10.github.io/2025/12/08/AI%E6%8E%A7%E5%88%B6%E9%94%AE%E7%9B%98%E7%A0%94%E7%A9%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.4/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI控制键盘研究',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/ziti.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/components/bilibili-card/bilibili-card.dark.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/./img/page-bg.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">68</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/./img/YH/zzz.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/./img/yx.png" alt="Logo"><span class="site-name">微光zc的网络小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">AI控制键盘研究</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></div><div class="menus_item"><a class="site-page" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comments"></i><span> 微光闲话</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">AI控制键盘研究</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-08T14:00:00.000Z" title="发表于 2025-12-08 22:00:00">2025-12-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-11T12:18:40.914Z" title="更新于 2025-12-11 20:18:40">2025-12-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><p>让AI可以通过指令控制键盘操作</p>
+<h1 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h1><ol>
+<li>Ollama</li>
+<li>Spring AI</li>
+<li>键盘控制</li>
+</ol>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="SpringBoot-项目初始化"><a href="#SpringBoot-项目初始化" class="headerlink" title="SpringBoot 项目初始化"></a>SpringBoot 项目初始化</h2><p>Java 21 + SpringBoot 3.5.8<br>Lombok + Spring Boot Devtools + Ollama + Spring Web</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><blockquote>
+<p>需要重启电脑<br>管理员身份打开powershell，运行下面代码<br><code>New-Item $PROFILE  -ItemType File -Force</code><br>找到并编辑这ps1文件<br><code>$OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding</code><br>然后运行命令<br><code>Set-ExecutionPolicy Unrestricted</code><br>输入chcp，查看代码活动页是否是65001</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$text = <span class="string">&quot;按up键&quot;</span></span><br><span class="line">$bytes = [System.Text.Encoding]::UTF8.GetBytes($text)</span><br><span class="line">curl -Method POST `</span><br><span class="line">     -Headers @&#123;<span class="string">&quot;Content-Type&quot;</span> = <span class="string">&quot;text/plain; charset=utf-8&quot;</span>&#125; `</span><br><span class="line">     -Body $bytes `</span><br><span class="line">     http:<span class="comment">//localhost:8080/keyboard</span></span><br></pre></td></tr></table></figure>
+
+<p>简化输入：<br>PowerShell 配置文件添加</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">aikey</span><span class="params">($text)</span> &#123;</span><br><span class="line">    $bytes = [System.Text.Encoding]::UTF8.GetBytes($text)</span><br><span class="line">    curl -Method POST -Headers @&#123;<span class="string">&quot;Content-Type&quot;</span>=<span class="string">&quot;text/plain; charset=utf-8&quot;</span>&#125; -Body $bytes http:<span class="comment">//localhost:8080/keyboard</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>aikey “按up键”<br>aikey “复制选中的内容”</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ol>
+<li>指令 –&gt; Spring</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">KeyboardApiController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> KeyboardAssistant assistant;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> KeyboardController controller;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">KeyboardApiController</span><span class="params">(KeyboardAssistant assistant, KeyboardController controller)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.assistant = assistant;</span><br><span class="line">        <span class="built_in">this</span>.controller = controller;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(path = &quot;/keyboard&quot;, consumes = &quot;text/plain;charset=UTF-8&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;String&gt; <span class="title function_">executeKeyboardAction</span><span class="params">(<span class="meta">@RequestBody</span> String userRequest)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">command</span> <span class="operator">=</span> assistant.generateKeyboardCommand(userRequest);</span><br><span class="line">            System.out.println(<span class="string">&quot;🧠 模型原始输出: [&quot;</span> + command + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;🧠 长度: &quot;</span> + command.length());</span><br><span class="line">            System.out.println(<span class="string">&quot;🧠 是否以 KEY: 开头: &quot;</span> + command.startsWith(<span class="string">&quot;KEY: &quot;</span>));</span><br><span class="line">            System.out.println(<span class="string">&quot;🧠 模型输出: &quot;</span> + command);</span><br><span class="line">            controller.executeCommand(command);</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.ok(<span class="string">&quot;Executed: &quot;</span> + command);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.badRequest().body(<span class="string">&quot;Error: &quot;</span> + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>Spring –&gt; AI</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">KeyboardAssistant</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">SYSTEM_PROMPT</span> <span class="operator">=</span> <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    你是一个严格的键盘自动化助手。请根据用户请求，输出对应的键盘操作。</span></span><br><span class="line"><span class="string">    必须遵守以下规则：</span></span><br><span class="line"><span class="string">    1. 只输出一行，以 &quot;KEY: &quot; 开头</span></span><br><span class="line"><span class="string">    2. 不要任何解释、标点、空格（除必要外）或额外文字</span></span><br><span class="line"><span class="string">    3. 优先使用标准组合键（如 Ctrl+C），不要自由发挥</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    常见操作映射：</span></span><br><span class="line"><span class="string">    - 按键位 -&gt; KEY: 相应键位</span></span><br><span class="line"><span class="string">    - 按w键 / 按键w / 按w -&gt; KEY: w</span></span><br><span class="line"><span class="string">    - 按W键 / 按键W / 按W -&gt; KEY: W</span></span><br><span class="line"><span class="string">    - 按1键 / 按1 -&gt; KEY: 1</span></span><br><span class="line"><span class="string">    - 复制 / 复制选中的内容 / 复制文本 → KEY: Ctrl+C</span></span><br><span class="line"><span class="string">    - 粘贴 / 粘贴内容 → KEY: Ctrl+V</span></span><br><span class="line"><span class="string">    - 剪切 → KEY: Ctrl+X</span></span><br><span class="line"><span class="string">    - 全选 → KEY: Ctrl+A</span></span><br><span class="line"><span class="string">    - 撤销 → KEY: Ctrl+Z</span></span><br><span class="line"><span class="string">    - 保存 → KEY: Ctrl+S</span></span><br><span class="line"><span class="string">    - 关闭窗口 → KEY: Alt+F4</span></span><br><span class="line"><span class="string">    - 切换输入法 → KEY: Shift</span></span><br><span class="line"><span class="string">    - 回车 / 确认 → KEY: Enter</span></span><br><span class="line"><span class="string">    - 删除 → KEY: Delete</span></span><br><span class="line"><span class="string">    - 退格 → KEY: Backspace</span></span><br><span class="line"><span class="string">    - 输入任意文字（如“Hello”）→ KEY: Hello</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    如果请求不在上述列表中，且无法确定按键，则输出：KEY: UNKNOWN</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    现在处理请求：</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ChatClient chatClient;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">KeyboardAssistant</span><span class="params">(ChatClient.Builder chatClientBuilder)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.chatClient = chatClientBuilder.build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">generateKeyboardCommand</span><span class="params">(String userRequest)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">raw</span> <span class="operator">=</span> chatClient.prompt()</span><br><span class="line">                .system(SYSTEM_PROMPT)</span><br><span class="line">                .user(userRequest)</span><br><span class="line">                .call()</span><br><span class="line">                .content();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;🔍 原始模型响应: [&quot;</span> + raw + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">        <span class="comment">// 使用正则查找 &quot;KEY: ...&quot; 行（忽略前后空白和多余内容）</span></span><br><span class="line">        <span class="type">Pattern</span> <span class="variable">pattern</span> <span class="operator">=</span> Pattern.compile(<span class="string">&quot;(?m)^\\s*KEY:\\s*(.*)$&quot;</span>);</span><br><span class="line">        <span class="type">Matcher</span> <span class="variable">matcher</span> <span class="operator">=</span> pattern.matcher(raw);</span><br><span class="line">        <span class="keyword">if</span> (matcher.find()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">keyPart</span> <span class="operator">=</span> <span class="string">&quot;KEY: &quot;</span> + matcher.group(<span class="number">1</span>).trim();</span><br><span class="line">            <span class="keyword">return</span> keyPart;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果完全找不到，fallback</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;No valid KEY: line found in model response. Raw: &quot;</span> + raw);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>AI –&gt; Robot</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">KeyboardController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Robot robot;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">KeyboardController</span><span class="params">()</span> <span class="keyword">throws</span> AWTException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;=== KeyboardController 初始化 ===&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;OS: &quot;</span> + System.getProperty(<span class="string">&quot;os.name&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;Java Home: &quot;</span> + System.getProperty(<span class="string">&quot;java.home&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;Headless system property: &quot;</span> + System.getProperty(<span class="string">&quot;java.awt.headless&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;GraphicsEnvironment.isHeadless(): &quot;</span> + GraphicsEnvironment.isHeadless());</span><br><span class="line">        System.out.println(<span class="string">&quot;==================================&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.robot = <span class="keyword">new</span> <span class="title class_">Robot</span>(); <span class="comment">// Line 14</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">executeCommand</span><span class="params">(String command)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!command.startsWith(<span class="string">&quot;KEY: &quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid command format&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> command.substring(<span class="number">5</span>).trim();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 情况1：普通文本输入</span></span><br><span class="line">        <span class="keyword">if</span> (!action.contains(<span class="string">&quot;+&quot;</span>)) &#123;</span><br><span class="line">            typeString(action);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 情况2：组合键（如 Ctrl+C）</span></span><br><span class="line">        String[] keys = action.split(<span class="string">&quot;\\+&quot;</span>);</span><br><span class="line">        pressKeys(keys);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">typeString</span><span class="params">(String text)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c : text.toCharArray()) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">keyCode</span> <span class="operator">=</span> KeyEvent.getExtendedKeyCodeForChar(c);</span><br><span class="line">            <span class="keyword">if</span> (keyCode != KeyEvent.VK_UNDEFINED) &#123;</span><br><span class="line">                robot.keyPress(keyCode);</span><br><span class="line">                robot.keyRelease(keyCode);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 处理特殊字符（简化版）</span></span><br><span class="line">                System.out.println(<span class="string">&quot;⚠️ 无法输入字符: &quot;</span> + c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pressKeys</span><span class="params">(String[] keyNames)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] keyCodes = <span class="keyword">new</span> <span class="title class_">int</span>[keyNames.length];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; keyNames.length; i++) &#123;</span><br><span class="line">            keyCodes[i] = getKeyCode(keyNames[i].trim());</span><br><span class="line">            robot.keyPress(keyCodes[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 释放（反向）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> keyNames.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            robot.keyRelease(keyCodes[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">getKeyCode</span><span class="params">(String key)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (key.toLowerCase()) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;ctrl&quot;</span> -&gt; KeyEvent.VK_CONTROL;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;alt&quot;</span> -&gt; KeyEvent.VK_ALT;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;shift&quot;</span> -&gt; KeyEvent.VK_SHIFT;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;enter&quot;</span> -&gt; KeyEvent.VK_ENTER;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;space&quot;</span> -&gt; KeyEvent.VK_SPACE;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;backspace&quot;</span> -&gt; KeyEvent.VK_BACK_SPACE;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;tab&quot;</span> -&gt; KeyEvent.VK_TAB;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;esc&quot;</span> -&gt; KeyEvent.VK_ESCAPE;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;up&quot;</span> -&gt; KeyEvent.VK_UP;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;down&quot;</span> -&gt; KeyEvent.VK_DOWN;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;left&quot;</span> -&gt; KeyEvent.VK_LEFT;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;right&quot;</span> -&gt; KeyEvent.VK_RIGHT;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;c&quot;</span> -&gt; KeyEvent.VK_C;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;v&quot;</span> -&gt; KeyEvent.VK_V;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;x&quot;</span> -&gt; KeyEvent.VK_X;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;a&quot;</span> -&gt; KeyEvent.VK_A;</span><br><span class="line">            <span class="comment">// 可继续扩展...</span></span><br><span class="line">            <span class="keyword">default</span> -&gt; KeyEvent.getExtendedKeyCodeForChar(key.charAt(<span class="number">0</span>));</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">- 按a键 / 按a / a -&gt; KEY: a</span><br><span class="line">- 按b键 / 按b / b -&gt; KEY: b</span><br><span class="line">- 按c键 / 按c / c -&gt; KEY: c</span><br><span class="line">- 按d键 / 按d / d -&gt; KEY: d</span><br><span class="line">- 按e键 / 按e / e -&gt; KEY: e</span><br><span class="line">- 按f键 / 按f / f -&gt; KEY: f</span><br><span class="line">- 按g键 / 按g / g -&gt; KEY: g</span><br><span class="line">- 按h键 / 按h / h -&gt; KEY: h</span><br><span class="line">- 按i键 / 按i / i -&gt; KEY: i</span><br><span class="line">- 按j键 / 按j / j -&gt; KEY: j</span><br><span class="line">- 按k键 / 按k / k -&gt; KEY: k</span><br><span class="line">- 按l键 / 按l / l -&gt; KEY: l</span><br><span class="line">- 按m键 / 按m / m -&gt; KEY: m</span><br><span class="line">- 按n键 / 按n / n -&gt; KEY: n</span><br><span class="line">- 按o键 / 按o / o -&gt; KEY: o</span><br><span class="line">- 按p键 / 按p / p -&gt; KEY: p</span><br><span class="line">- 按q键 / 按q / q -&gt; KEY: q</span><br><span class="line">- 按r键 / 按r / r -&gt; KEY: r</span><br><span class="line">- 按s键 / 按s / s -&gt; KEY: s</span><br><span class="line">- 按t键 / 按t / t -&gt; KEY: t</span><br><span class="line">- 按u键 / 按u / u -&gt; KEY: u</span><br><span class="line">- 按v键 / 按v / v -&gt; KEY: v</span><br><span class="line">- 按w键 / 按w / w -&gt; KEY: w</span><br><span class="line">- 按x键 / 按x / x -&gt; KEY: x</span><br><span class="line">- 按y键 / 按y / y -&gt; KEY: y</span><br><span class="line">- 按z键 / 按z / z -&gt; KEY: z</span><br><span class="line">- 按A键 / 按A / A -&gt; KEY: A</span><br><span class="line">- 按B键 / 按B / B -&gt; KEY: B</span><br><span class="line">- 按C键 / 按C / C -&gt; KEY: C</span><br><span class="line">- 按D键 / 按D / D -&gt; KEY: D</span><br><span class="line">- 按E键 / 按E / E -&gt; KEY: E</span><br><span class="line">- 按F键 / 按F / F -&gt; KEY: F</span><br><span class="line">- 按G键 / 按G / G -&gt; KEY: G</span><br><span class="line">- 按H键 / 按H / H -&gt; KEY: H</span><br><span class="line">- 按I键 / 按I / I -&gt; KEY: I</span><br><span class="line">- 按J键 / 按J / J -&gt; KEY: J</span><br><span class="line">- 按K键 / 按K / K -&gt; KEY: K</span><br><span class="line">- 按L键 / 按L / L -&gt; KEY: L</span><br><span class="line">- 按M键 / 按M / M -&gt; KEY: M</span><br><span class="line">- 按N键 / 按N / N -&gt; KEY: N</span><br><span class="line">- 按O键 / 按O / O -&gt; KEY: O</span><br><span class="line">- 按P键 / 按P / P -&gt; KEY: P</span><br><span class="line">- 按Q键 / 按Q / Q -&gt; KEY: Q</span><br><span class="line">- 按R键 / 按R / R -&gt; KEY: R</span><br><span class="line">- 按S键 / 按S / S -&gt; KEY: S</span><br><span class="line">- 按T键 / 按T / T -&gt; KEY: T</span><br><span class="line">- 按U键 / 按U / U -&gt; KEY: U</span><br><span class="line">- 按V键 / 按V / V -&gt; KEY: V</span><br><span class="line">- 按W键 / 按W / W -&gt; KEY: W</span><br><span class="line">- 按X键 / 按X / X -&gt; KEY: X</span><br><span class="line">- 按Y键 / 按Y / Y -&gt; KEY: Y</span><br><span class="line">- 按Z键 / 按Z / Z -&gt; KEY: Z</span><br><span class="line">- 复制 / 复制选中的内容 / 复制文本 → KEY: Ctrl+C</span><br><span class="line">- 粘贴 / 粘贴内容 → KEY: Ctrl+V</span><br><span class="line">- 剪切 → KEY: Ctrl+X</span><br><span class="line">- 全选 → KEY: Ctrl+A</span><br><span class="line">- 撤销 → KEY: Ctrl+Z</span><br><span class="line">- 保存 → KEY: Ctrl+S</span><br><span class="line">- 关闭窗口 → KEY: Alt+F4</span><br><span class="line">- 切换输入法 → KEY: Shift</span><br><span class="line">- 回车 / 确认 → KEY: Enter</span><br><span class="line">- 删除 → KEY: Delete</span><br><span class="line">- 退格 → KEY: Backspace</span><br><span class="line">- 输入任意文字（如“Hello”）→ KEY: Hello</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io">微光zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://wzcwzc10.github.io/2025/12/08/AI%E6%8E%A7%E5%88%B6%E9%94%AE%E7%9B%98%E7%A0%94%E7%A9%B6/">https://wzcwzc10.github.io/2025/12/08/AI%E6%8E%A7%E5%88%B6%E9%94%AE%E7%9B%98%E7%A0%94%E7%A9%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://wzcwzc10.github.io" target="_blank">微光zc的网络小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%A0%94%E7%A9%B6/">研究</a><a class="post-meta__tags" href="/tags/AI/">AI</a></div><div class="post-share"><div class="social-share" data-image="/./img/YH/zzz.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>来一杯燃油饮</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/06/Elasticsearch%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="Elasticsearch 学习总结"><img class="cover" src="/./img/YH/hebian.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Elasticsearch 学习总结</div></div><div class="info-2"><div class="info-item-1">Elasticsearch</div></div></div></a><a class="pagination-related" href="/2025/12/11/Java%20Web%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E6%96%B0%E7%BC%96%EF%BC%89/" title="Java Web 学习总结（新编）"><img class="cover" src="/./img/YH/vvadt.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Java Web 学习总结（新编）</div></div><div class="info-2"><div class="info-item-1">Java Web 学习总结（新编），进一步简化以前的笔记。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/10/12/2D%E5%AF%BB%E8%B7%AF%E7%A0%94%E7%A9%B6/" title="2D寻路研究"><img class="cover" src="/./img/YH/hebian.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-12</div><div class="info-item-2">2D寻路研究</div></div><div class="info-2"><div class="info-item-1">2D寻路研究</div></div></div></a><a class="pagination-related" href="/2025/10/11/%E5%85%AD%E8%BE%B9%E5%BD%A2%E7%BD%91%E6%A0%BC%E7%A0%94%E7%A9%B6/" title="六边形网格研究"><img class="cover" src="/./img/YH/yek.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-11</div><div class="info-item-2">六边形网格研究</div></div><div class="info-2"><div class="info-item-1">六边形网格研究</div></div></div></a><a class="pagination-related" href="/2025/11/09/LangChain%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="LangChain 学习总结"><img class="cover" src="/./img/YH/tutuv.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-09</div><div class="info-item-2">LangChain 学习总结</div></div><div class="info-2"><div class="info-item-1">LangChain 学习总结</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/./img/jufufu-ht.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">微光zc</div><div class="author-info-description">一个有想法的极客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">68</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://space.bilibili.com/178083315"><i class="fab fa-bilibili"></i><span>关注我！</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">世界全剧终，欢迎来到my blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">技术选型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot-%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.1.</span> <span class="toc-text">SpringBoot 项目初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">3.3.</span> <span class="toc-text">代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/12/11/Java%20Web%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E6%96%B0%E7%BC%96%EF%BC%89/" title="Java Web 学习总结（新编）"><img src="/./img/YH/vvadt.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java Web 学习总结（新编）"/></a><div class="content"><a class="title" href="/2025/12/11/Java%20Web%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%EF%BC%88%E6%96%B0%E7%BC%96%EF%BC%89/" title="Java Web 学习总结（新编）">Java Web 学习总结（新编）</a><time datetime="2025-12-11T12:30:00.000Z" title="发表于 2025-12-11 20:30:00">2025-12-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/08/AI%E6%8E%A7%E5%88%B6%E9%94%AE%E7%9B%98%E7%A0%94%E7%A9%B6/" title="AI控制键盘研究"><img src="/./img/YH/zzz.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI控制键盘研究"/></a><div class="content"><a class="title" href="/2025/12/08/AI%E6%8E%A7%E5%88%B6%E9%94%AE%E7%9B%98%E7%A0%94%E7%A9%B6/" title="AI控制键盘研究">AI控制键盘研究</a><time datetime="2025-12-08T14:00:00.000Z" title="发表于 2025-12-08 22:00:00">2025-12-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/06/Elasticsearch%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="Elasticsearch 学习总结"><img src="/./img/YH/hebian.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Elasticsearch 学习总结"/></a><div class="content"><a class="title" href="/2025/12/06/Elasticsearch%20%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="Elasticsearch 学习总结">Elasticsearch 学习总结</a><time datetime="2025-12-06T14:30:00.000Z" title="发表于 2025-12-06 22:30:00">2025-12-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/05/%E5%BE%AE%E5%85%89%E5%90%8E%E7%AB%AF%E5%85%A8%E8%83%BD%E4%BE%A0/" title="微光后端全能侠"><img src="/./img/YH/yey.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微光后端全能侠"/></a><div class="content"><a class="title" href="/2025/12/05/%E5%BE%AE%E5%85%89%E5%90%8E%E7%AB%AF%E5%85%A8%E8%83%BD%E4%BE%A0/" title="微光后端全能侠">微光后端全能侠</a><time datetime="2025-12-05T04:00:00.000Z" title="发表于 2025-12-05 12:00:00">2025-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/04/API%E6%8E%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE/" title="API接口项目"><img src="/./img/YH/3/ailisi3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="API接口项目"/></a><div class="content"><a class="title" href="/2025/12/04/API%E6%8E%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE/" title="API接口项目">API接口项目</a><time datetime="2025-12-04T05:30:00.000Z" title="发表于 2025-12-04 13:30:00">2025-12-04</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/./img/YH/zzz.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 微光zc</span></div><div class="footer_custom_text">世界全剧终，欢迎来到my blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.4/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'wzcwzc10/wzcwzc10.github.io',
+      'data-repo-id': 'R_kgDOPIIccg',
+      'data-category-id': 'DIC_kwDOPIIccs4CtHqc',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="https://cdn.jsdelivr.net/gh/weilain/cdn-photo/js/jquery.min.js"></script><div class="aplayer no-destroy" data-id="13985424074" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false"> </div><script id="canvas_nest" defer="defer" color="255,255,0" opacity="0.6" zIndex="-1" count="120" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-show-text.min.js" data-mobile="true" data-text="微光zc,GitHub" data-fontsize="29px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div></body></html><script type="text/javascript" src="/js/crash_cheat.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.css"><div id="sakana-widget" style="position:fixed;bottom:5px;right:80px;"></div><script>function initSakanaWidget() {
+  const jufufuht = SakanaWidget.getCharacter('chisato');
+  jufufuht.image = `https://wzcwzc10.github.io/img/jufufu.png`;
+  jufufuht.initialState = {
+    ...jufufuht.initialState,
+    i: 0.001,
+    d: 1,
+  };
+  SakanaWidget.registerCharacter('jufufuht', jufufuht);
+  new SakanaWidget({ character: 'jufufuht' }).mount('#sakana-widget');
+
+  const jufufu = SakanaWidget.getCharacter('takina');
+  jufufu.image = `https://wzcwzc10.github.io/img/jufufu-ht.gif`;
+  SakanaWidget.registerCharacter('jufufu', jufufu);
+  new SakanaWidget({ character: 'jufufu' }).mount('#sakana-widget');
+}
+nextCharacter(jufufuht);</script><script async onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana-widget@2.7.1/lib/sakana.min.js"></script>
